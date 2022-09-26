@@ -4,49 +4,54 @@ public class Room {
 
     private int roomNumber;
     private int currentRoom;
-    private String northConnectingRoom;
-    private String southConnectingRoom;
-    private String eastConnectingRoom;
-    private String westConnectingRoom;
+    private int northConnectingRoom;
+    private int southConnectingRoom;
+    private int eastConnectingRoom;
+    private int westConnectingRoom;
     private String description;
 
-    public Room(String northConnectingRoom, String southConnectingRoom, String eastConnectingRoom, String westConnectingRoom ){
-
+    public Room(int roomNumber, String description, int northConnectingRoom, int southConnectingRoom, int eastConnectingRoom, int westConnectingRoom ){
+        this.roomNumber = roomNumber;
+        this.description = description;
+        this.northConnectingRoom = northConnectingRoom;
+        this.southConnectingRoom = southConnectingRoom;
+        this.eastConnectingRoom = eastConnectingRoom;
+        this.westConnectingRoom = westConnectingRoom;
     }
     public Room() {
     }
 
 
 
-    public String getNorthConnectingRoom() {
+    public int getNorthConnectingRoom() {
         return northConnectingRoom;
     }
 
-    public void setNorthConnectingRoom(String northConnectingRoom) {
+    public void setNorthConnectingRoom(int northConnectingRoom) {
         this.northConnectingRoom = northConnectingRoom;
     }
 
-    public String getSouthConnectingRoom() {
+    public int getSouthConnectingRoom() {
         return southConnectingRoom;
     }
 
-    public void setSouthConnectingRoom(String southConnectingRoom) {
+    public void setSouthConnectingRoom(int southConnectingRoom) {
         this.southConnectingRoom = southConnectingRoom;
     }
 
-    public String getEastConnectingRoom() {
+    public int getEastConnectingRoom() {
         return eastConnectingRoom;
     }
 
-    public void setEastConnectingRoom(String eastConnectingRoom) {
+    public void setEastConnectingRoom(int eastConnectingRoom) {
         this.eastConnectingRoom = eastConnectingRoom;
     }
 
-    public String getWestConnectingRoom() {
+    public int getWestConnectingRoom() {
         return westConnectingRoom;
     }
 
-    public void setWestConnectingRoom(String westConnectingRoom) {
+    public void setWestConnectingRoom(int westConnectingRoom) {
         this.westConnectingRoom = westConnectingRoom;
     }
 

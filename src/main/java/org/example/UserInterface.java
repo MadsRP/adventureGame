@@ -9,7 +9,6 @@ public class UserInterface {
     boolean keepPlaying = true;
     String menuInput;
     Scanner input = new Scanner(System.in);
-    Room room = new Room();
     public void menuText() {
         System.out.println("Start the game: start");
         System.out.println("Exit the game: exit");
@@ -27,7 +26,6 @@ public class UserInterface {
             switch (menuInput) {
                 case "start":
                     startOfTheGame();
-                    do {
                         System.out.println("Which direction would you like to go?");
                         am.direction = input.nextLine().toLowerCase();
                         am.movement();
@@ -39,10 +37,9 @@ public class UserInterface {
                                 menuText();
                                 break;
                             case "look":
-                                System.out.println("You look around");
+                                System.out.println(am.lookAround());
                                 break;
                         }
-                    }while (keepPlaying);
                 case "exit":
                     keepRunning = false;
                     break;
@@ -50,7 +47,7 @@ public class UserInterface {
                     menuText();
                     break;
                 case "look":
-                    System.out.println("You look around.");
+                    System.out.println(am.lookAround());
                     break;
             }
 
