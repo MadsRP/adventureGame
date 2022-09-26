@@ -1,0 +1,9 @@
+Room 1 -> 2, 4: Forest clearing with two gates south and east
+Room 2 -> 1, 3: Small courtyard with a well
+Room 3 -> 2, 6: A moonlit sculpture
+Room 4 -> 1, 7: A small shack with random shit
+Room 5 -> 8: House of the owner
+Room 6 -> 3, 9: A small garden full of dangerous looking plants
+Room 7 -> 4, 8: A small field with a scarecrow
+Room 8 -> 5, 7, 9: A courtyard with set of stairs leading to house
+Room 9 -> 6, 8: A small shrine
