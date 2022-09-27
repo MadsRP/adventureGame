@@ -19,9 +19,7 @@ public class AdventureMechanics {
         map.add(new Room(6, "A small field with a scarecrow", 3, -1, 7, -1));
         map.add(new Room(7, "A courtyard with set of stairs leading to house", 4, -1, 6, 8));
         map.add(new Room(8, "A small shrine", 5, -1, -1, 7));
-
         player = new Player(map.get(0));
-
     }
 
     public String lookAround() {
@@ -31,7 +29,7 @@ public class AdventureMechanics {
 
     }
 
-    public String gameStart(){
+    public String gameStart() {
         String startDescription = "";
         startDescription = "You are lost in the woods, and wander around lost, looking for anything remotely looking like civilisation. " +
                 "You stumple upon a " + player.currentRoom.getDescription().toLowerCase();
@@ -40,7 +38,6 @@ public class AdventureMechanics {
     }
 
     public void movement() {
-
         Boolean keepPlaying = false;
         String movementDirection = "";
         do {
@@ -48,8 +45,8 @@ public class AdventureMechanics {
             switch (direction) {
                 case "n",
                         "north",
-                    "go north",
-                    "go n":
+                        "go north",
+                        "go n":
                     if (player.currentRoom.getNorthConnectingRoom() >= 0) {
                         System.out.println("You go north and enter " + player.currentRoom.getDescription().toLowerCase());
                         newRoom = player.currentRoom.getNorthConnectingRoom();
@@ -95,7 +92,7 @@ public class AdventureMechanics {
                     keepPlaying = false;
             }
             player.currentRoom = map.get(newRoom);
-            System.out.println("You go " + movementDirection+ " and enter "  + player.currentRoom.getDescription().toLowerCase());
+            System.out.println("You go " + movementDirection + " and enter " + player.currentRoom.getDescription().toLowerCase());
         } while (!keepPlaying);
     }
 }
