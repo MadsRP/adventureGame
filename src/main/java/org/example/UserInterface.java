@@ -5,7 +5,6 @@ import java.util.Scanner;
 
 public class UserInterface {
     AdventureMechanics am = new AdventureMechanics();
-    ArrayList<Integer> alreadyVisited = new ArrayList<>();
     boolean keepRunning = true;
     String menuInput;
     Scanner input = new Scanner(System.in);
@@ -33,7 +32,7 @@ public class UserInterface {
                     "go n":
                 am.direction = "north";
                 am.movement();
-                alreadyVisited();
+                am.alreadyVisited();
                 break;
             case "w",
                     "west",
@@ -41,7 +40,7 @@ public class UserInterface {
                     "go w":
                 am.direction = "west";
                 am.movement();
-                alreadyVisited();
+                am.alreadyVisited();
                 break;
             case "e",
                     "east",
@@ -49,7 +48,7 @@ public class UserInterface {
                     "go e":
                 am.direction = "east";
                 am.movement();
-                alreadyVisited();
+                am.alreadyVisited();
                 break;
             case "s",
                     "south",
@@ -57,7 +56,7 @@ public class UserInterface {
                     "go s":
                 am.direction = "south";
                 am.movement();
-                alreadyVisited();
+                am.alreadyVisited();
                 break;
         }
     }
@@ -81,15 +80,6 @@ public class UserInterface {
         }
     }
 
-
-    private void alreadyVisited() {
-        if (alreadyVisited.contains(am.player.currentRoom.getRoomNumber())) {
-            System.out.println("You are back by " + am.player.currentRoom.getDescriptionShort());
-        } else if (!alreadyVisited.contains(am.player.currentRoom.getRoomNumber())) {
-            System.out.println("You are by " + am.player.getCurrentRoom().getDescription().toLowerCase());
-        }
-        alreadyVisited.add(am.player.getCurrentRoom().getRoomNumber());
-    }
 
     public void bootMenu() {
         switch (menuInput) {

@@ -1,5 +1,7 @@
 package org.example;
 
+import java.util.ArrayList;
+
 public class AdventureMechanics {
     String direction = "";
     Room room1 = new Room(1, "The Forest clearing with two gates south and east.", "the forest clearing.");
@@ -12,6 +14,7 @@ public class AdventureMechanics {
     Room room8 = new Room(8, "A courtyard with set of stairs leading to house.", "the stairs.");
     Room room9 = new Room(9, "A small shrine.", "the shrine.");
     Player player = new Player(room1);
+    ArrayList<Integer> alreadyVisited = new ArrayList<>();
 
     public String lookAround() {
         String lookAround = player.currentRoom.getDescription();
@@ -46,6 +49,15 @@ public class AdventureMechanics {
 
         room9.setWestConnectingRoom(room8);
         room9.setNorthConnectingRoom(room6);
+    }
+
+    public void alreadyVisited() {
+        if (alreadyVisited.contains(player.currentRoom.getRoomNumber())) {
+            System.out.println("You are back by " + player.currentRoom.getDescriptionShort());
+        } else if (!alreadyVisited.contains(player.currentRoom.getRoomNumber())) {
+            System.out.println("You are by " + player.getCurrentRoom().getDescription().toLowerCase());
+        }
+        alreadyVisited.add(player.getCurrentRoom().getRoomNumber());
     }
 
     public void movement() {
