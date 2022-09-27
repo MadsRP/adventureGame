@@ -109,4 +109,3 @@ public class UserInterface {
         } while (keepRunning);
     }
 }
-
