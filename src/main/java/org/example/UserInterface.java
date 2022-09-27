@@ -1,9 +1,6 @@
 package org.example;
 
-import javax.sound.midi.Soundbank;
-import java.lang.reflect.Array;
 import java.util.ArrayList;
-import java.util.List;
 import java.util.Scanner;
 
 public class UserInterface {
@@ -88,7 +85,7 @@ public class UserInterface {
         alreadyVisited.add(am.player.getCurrentRoom().getRoomNumber());
     }
 
-    public void menuInput() {
+    public void bootMenu() {
         switch (menuInput) {
             case "start":
                 gameIntro();
@@ -111,7 +108,7 @@ public class UserInterface {
 
     public void menuCommands() {
         menuInput = input.nextLine().toLowerCase();
-        menuInput();
+        bootMenu();
     }
 
     public void startGame() {

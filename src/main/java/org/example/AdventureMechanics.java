@@ -1,10 +1,5 @@
 package org.example;
 
-import com.sun.jdi.event.BreakpointEvent;
-
-import javax.sound.midi.Soundbank;
-import java.util.ArrayList;
-
 public class AdventureMechanics {
     String direction = "";
     Room room1 = new Room(1, "The Forest clearing with two gates south and east.", "the forest clearing.");
