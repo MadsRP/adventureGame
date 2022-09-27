@@ -1,16 +1,15 @@
 package org.example;
 
 import javax.sound.midi.Soundbank;
+import java.lang.reflect.Array;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
 public class UserInterface {
     AdventureMechanics am = new AdventureMechanics();
     boolean keepRunning = true;
     boolean keepPlaying = true;
-    String directionN = "";
-    String directionS = "";
-    String directionW = "";
-    String directionE = "";
     String menuInput;
     Scanner input = new Scanner(System.in);
 
@@ -26,48 +25,64 @@ public class UserInterface {
 
     }
 
-    public void menuCommands() {
-        menuInput = input.nextLine().toLowerCase();
+    public void moveInput(){
+        System.out.println("Which direction would you like to go?");
+        am.direction = input.nextLine().toLowerCase();
+        switch (am.direction) {
+            case "n",
+                    "north",
+                    "go north",
+                    "go n":
+                am.direction = "n";
+                break;
+            case "w",
+                    "west",
+                    "go west",
+                    "go w":
+                am.direction = "w";
+                break;
+            case "e",
+                    "east",
+                    "go east",
+                    "go e":
+                am.direction = "e";
+                break;
+            case "s",
+                    "south",
+                    "go south",
+                    "go s":
+                am.direction = "s";
+                break;
+            case "exit":
+                keepPlaying = false;
+                break;
+            case "help":
+                menuText();
+                break;
+            case "look":
+                System.out.println(am.lookAround());
+                break;
+        }
+        am.movement();
+        outputRoom();
+
+    }
+
+    private void outputRoom() {
+
+        System.out.println("You ");
+
+        ArrayList<AdventureMechanics> alreadyVisited = new ArrayList<>();
+
+
+    }
+
+    public void menuInput() {
         switch (menuInput) {
             case "start":
                 startOfTheGame();
                 do {
-                    System.out.println("Which direction would you like to go?");
-                    am.direction = input.nextLine().toLowerCase();
-                    am.movement();
-                    switch (am.direction) {
-//                        case "n",
-//                                "north",
-//                                "go north",
-//                                "go n":
-//                            directionN = "n";
-//                        case "w",
-//                                "west",
-//                                "go west",
-//                                "go w":
-//                            directionW = "w";
-//                        case "e",
-//                                "east",
-//                                "go east",
-//                                "go e":
-//                            directionE = "e";
-//                        case "s",
-//                                "south",
-//                                "go south",
-//                                "go s":
-//                            directionS = "s";
-                        case "exit":
-                            keepPlaying = false;
-                            break;
-                        case "help":
-                            menuText();
-                            break;
-                        case "look":
-                            System.out.println(am.lookAround());
-                            break;
-                    }
-
-                    System.out.println(am.direction);
+                    moveInput();
                 } while (keepRunning = true);
             case "exit":
                 keepRunning = false;
@@ -78,8 +93,13 @@ public class UserInterface {
             case "look":
                 System.out.println(am.lookAround());
                 break;
-        }
 
+        }
+    }
+
+    public void menuCommands() {
+        menuInput = input.nextLine().toLowerCase();
+        menuInput();
     }
 
     public void startGame() {
