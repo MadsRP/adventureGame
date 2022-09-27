@@ -66,7 +66,7 @@ public class AdventureMechanics {
             }
 
             if (newRoom == null){
-                System.out.println("You try going " + direction + " but it's not possible");
+                System.out.println("You try going " + direction + " but it's not possible.");
             } else {
                 player.setCurrentRoom(newRoom);
             }
