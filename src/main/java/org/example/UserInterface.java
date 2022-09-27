@@ -8,6 +8,7 @@ import java.util.Scanner;
 
 public class UserInterface {
     AdventureMechanics am = new AdventureMechanics();
+    ArrayList<Integer> alreadyVisited = new ArrayList<>();
     boolean keepRunning = true;
     boolean keepPlaying = true;
     String menuInput;
@@ -22,59 +23,58 @@ public class UserInterface {
 
     public void startOfTheGame() {
         am.gameStart();
-
     }
 
-    public void moveInput(){
+    public void moveInput() {
         System.out.println("Which direction would you like to go?");
         am.direction = input.nextLine().toLowerCase();
-        switch (am.direction) {
-            case "n",
-                    "north",
-                    "go north",
-                    "go n":
-                am.direction = "n";
-                break;
-            case "w",
-                    "west",
-                    "go west",
-                    "go w":
-                am.direction = "w";
-                break;
-            case "e",
-                    "east",
-                    "go east",
-                    "go e":
-                am.direction = "e";
-                break;
-            case "s",
-                    "south",
-                    "go south",
-                    "go s":
-                am.direction = "s";
-                break;
-            case "exit":
-                keepPlaying = false;
-                break;
-            case "help":
-                menuText();
-                break;
-            case "look":
-                System.out.println(am.lookAround());
-                break;
-        }
-        am.movement();
-        outputRoom();
-
+            switch (am.direction) {
+                case "n",
+                        "north",
+                        "go north",
+                        "go n":
+                    am.direction = "n";
+                    break;
+                case "w",
+                        "west",
+                        "go west",
+                        "go w":
+                    am.direction = "w";
+                    break;
+                case "e",
+                        "east",
+                        "go east",
+                        "go e":
+                    am.direction = "e";
+                    break;
+                case "s",
+                        "south",
+                        "go south",
+                        "go s":
+                    am.direction = "s";
+                    break;
+                case "exit":
+                    keepPlaying = false;
+                    break;
+                case "help":
+                    menuText();
+                    break;
+                case "look":
+                    System.out.println(am.lookAround());
+                    break;
+            }
+            am.movement();
+            alreadyVisited();
     }
 
-    private void outputRoom() {
 
-        System.out.println("You ");
-
-        ArrayList<AdventureMechanics> alreadyVisited = new ArrayList<>();
-
-
+    private void alreadyVisited(){
+        if(alreadyVisited.contains(am.player.currentRoom.getRoomNumber())){
+            System.out.println("You are back by " + am.player.currentRoom.getDescriptionShort());
+        } else if(!alreadyVisited.contains(am.player.currentRoom.getRoomNumber())){
+            System.out.println("You are by " + am.player.getCurrentRoom().getDescription().toLowerCase());
+        }
+        alreadyVisited.add(am.player.getCurrentRoom().getRoomNumber());
     }
 
     public void menuInput() {

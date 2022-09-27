@@ -9,6 +9,7 @@ public class Room {
     private Room eastConnectingRoom;
     private Room westConnectingRoom;
     private String description;
+    private String descriptionShort;
 
     public Room(Room northConnectingRoom, Room southConnectingRoom, Room eastConnectingRoom, Room westConnectingRoom ){
         this.northConnectingRoom = northConnectingRoom;
@@ -17,10 +18,11 @@ public class Room {
         this.westConnectingRoom = westConnectingRoom;
     }
 
-    public Room(int roomNumber, String description)
+    public Room(int roomNumber, String description, String descriptionShort)
     {
         this.roomNumber = roomNumber;
         this.description = description;
+        this.descriptionShort = descriptionShort;
     }
 
     public Room(int roomNumber){
@@ -31,6 +33,14 @@ public class Room {
 
 
 
+
+    public String getDescriptionShort() {
+        return descriptionShort;
+    }
+
+    public void setDescriptionShort(String descriptionShort) {
+        this.descriptionShort = descriptionShort;
+    }
     public Room getNorthConnectingRoom() {
         return northConnectingRoom;
     }

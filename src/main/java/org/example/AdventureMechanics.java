@@ -7,16 +7,17 @@ import java.util.ArrayList;
 
 public class AdventureMechanics {
     String direction = "";
-    Room room1 = new Room(1, "Forest clearing with two gates south and east.");
-    Room room2 = new Room(2, "Small courtyard with a well.");
-    Room room3 = new Room(3, "A courtyard with a moonlit sculpture.");
-    Room room4 = new Room(4, "A small shack with random shit.");
-    Room room5 = new Room(5, "the patio of the house.");
-    Room room6 = new Room(6, "A small garden full of dangerous looking plants.");
-    Room room7 = new Room(7, "A small field with a scarecrow.");
-    Room room8 = new Room(8, "A courtyard with set of stairs leading to house.");
-    Room room9 = new Room(9, "A small shrine.");
+    Room room1 = new Room(1, "Forest clearing with two gates south and east.", "the forest.");
+    Room room2 = new Room(2, "Small courtyard with a well.", "the well.");
+    Room room3 = new Room(3, "A courtyard with a moonlit sculpture.", "the courtyard with a sculpture.");
+    Room room4 = new Room(4, "A small shack with random shit.", "the shack.");
+    Room room5 = new Room(5, "the patio of the house.", "the patio.");
+    Room room6 = new Room(6, "A small garden full of dangerous looking plants.", "the garden.");
+    Room room7 = new Room(7, "A small field with a scarecrow.", "the field.");
+    Room room8 = new Room(8, "A courtyard with set of stairs leading to house.", "the stairs.");
+    Room room9 = new Room(9, "A small shrine.", "the shrine.");
     Player player = new Player(room1);
+    Room previousRoom = player.getCurrentRoom();
 
 
 
@@ -30,6 +31,9 @@ public class AdventureMechanics {
     }
 
     public String gameStart() {
+
+        map();
+
         String startDescription = "";
         startDescription = "You are lost in the woods, and wander around lost, looking for anything remotely looking like civilisation. " +
                 "You stumple upon a " + player.currentRoom.getDescription().toLowerCase();
@@ -70,23 +74,26 @@ public class AdventureMechanics {
     public void movement() {
 
         Room currentRoom = player.getCurrentRoom();
-        Room previousRoom = player.getCurrentRoom();
-        map();
+        Room newRoom = null;
+
 
             if (direction.equals("n")) {
-                player.setCurrentRoom(currentRoom.getNorthConnectingRoom());
+                newRoom = currentRoom.getNorthConnectingRoom();
             } else if (direction.equals("s")) {
-                player.setCurrentRoom(currentRoom.getSouthConnectingRoom());
+                newRoom = currentRoom.getSouthConnectingRoom();
             } else if (direction.equals("e")) {
-                player.setCurrentRoom(currentRoom.getEastConnectingRoom());
+                newRoom = currentRoom.getEastConnectingRoom();
             } else if (direction.equals("w")) {
-                player.setCurrentRoom(currentRoom.getWestConnectingRoom());
+                newRoom = currentRoom.getWestConnectingRoom();
             }
 
-            if (player.getCurrentRoom() == null){
+            if (newRoom == null){
                 System.out.println("You cant go this way.");
-                player.setCurrentRoom(previousRoom);
+           //     player.setCurrentRoom(previousRoom);
+            } else {
+                player.setCurrentRoom(newRoom);
             }
+
 
         }
 
