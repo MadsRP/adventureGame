@@ -10,7 +10,6 @@ public class UserInterface {
     AdventureMechanics am = new AdventureMechanics();
     ArrayList<Integer> alreadyVisited = new ArrayList<>();
     boolean keepRunning = true;
-    boolean keepPlaying = true;
     String menuInput;
     Scanner input = new Scanner(System.in);
 
@@ -21,8 +20,12 @@ public class UserInterface {
         System.out.println("Get description of your room again: Look");
     }
 
-    public void startOfTheGame() {
-        am.gameStart();
+    public String gameIntro() {
+        am.map();
+        String gameIntro = "You are lost in the woods, and wander around lost, looking for anything remotely looking like civilisation. " +
+                "You stumple upon a " + am.player.currentRoom.getDescription().toLowerCase();
+        System.out.println(gameIntro);
+        return gameIntro;
     }
 
     public void moveInput() {
@@ -33,38 +36,46 @@ public class UserInterface {
                         "north",
                         "go north",
                         "go n":
-                    am.direction = "n";
+                    am.direction = "north";
+                    am.movement();
+                    alreadyVisited();
                     break;
                 case "w",
                         "west",
                         "go west",
                         "go w":
-                    am.direction = "w";
+                    am.direction = "west";
+                    am.movement();
+                    alreadyVisited();
                     break;
                 case "e",
                         "east",
                         "go east",
                         "go e":
-                    am.direction = "e";
+                    am.direction = "east";
+                    am.movement();
+                    alreadyVisited();
                     break;
                 case "s",
                         "south",
                         "go south",
                         "go s":
-                    am.direction = "s";
+                    am.direction = "south";
+                    am.movement();
+                    alreadyVisited();
                     break;
                 case "exit":
-                    keepPlaying = false;
+                    System.out.println("Quitting game.");
+                    System.exit(0);
                     break;
                 case "help":
                     menuText();
                     break;
                 case "look":
-                    System.out.println(am.lookAround());
+                    System.out.println("You see " + am.lookAround());
                     break;
+
             }
-            am.movement();
-            alreadyVisited();
     }
 
 
@@ -80,12 +91,13 @@ public class UserInterface {
     public void menuInput() {
         switch (menuInput) {
             case "start":
-                startOfTheGame();
+                gameIntro();
                 do {
                     moveInput();
-                } while (keepRunning = true);
+                } while (keepRunning);
             case "exit":
-                keepRunning = false;
+                System.out.println("Quitting game.");
+                System.exit(0);
                 break;
             case "help":
                 menuText();

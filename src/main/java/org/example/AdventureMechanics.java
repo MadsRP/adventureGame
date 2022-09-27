@@ -7,8 +7,8 @@ import java.util.ArrayList;
 
 public class AdventureMechanics {
     String direction = "";
-    Room room1 = new Room(1, "Forest clearing with two gates south and east.", "the forest.");
-    Room room2 = new Room(2, "Small courtyard with a well.", "the well.");
+    Room room1 = new Room(1, "The Forest clearing with two gates south and east.", "the forest clearing.");
+    Room room2 = new Room(2, "A Small courtyard with a well.", "the well.");
     Room room3 = new Room(3, "A courtyard with a moonlit sculpture.", "the courtyard with a sculpture.");
     Room room4 = new Room(4, "A small shack with random shit.", "the shack.");
     Room room5 = new Room(5, "the patio of the house.", "the patio.");
@@ -17,28 +17,10 @@ public class AdventureMechanics {
     Room room8 = new Room(8, "A courtyard with set of stairs leading to house.", "the stairs.");
     Room room9 = new Room(9, "A small shrine.", "the shrine.");
     Player player = new Player(room1);
-    Room previousRoom = player.getCurrentRoom();
-
-
-
-
 
     public String lookAround() {
-        String lookAround = "";
-        lookAround = player.currentRoom.getDescription();
+        String lookAround = player.currentRoom.getDescription();
         return lookAround;
-
-    }
-
-    public String gameStart() {
-
-        map();
-
-        String startDescription = "";
-        startDescription = "You are lost in the woods, and wander around lost, looking for anything remotely looking like civilisation. " +
-                "You stumple upon a " + player.currentRoom.getDescription().toLowerCase();
-        System.out.println(startDescription);
-        return startDescription;
     }
 
     public void map(){
@@ -76,20 +58,20 @@ public class AdventureMechanics {
         Room currentRoom = player.getCurrentRoom();
         Room newRoom = null;
 
-
-            if (direction.equals("n")) {
+            if (direction.equals("north")) {
                 newRoom = currentRoom.getNorthConnectingRoom();
-            } else if (direction.equals("s")) {
+            } else if (direction.equals("south")) {
                 newRoom = currentRoom.getSouthConnectingRoom();
-            } else if (direction.equals("e")) {
+            } else if (direction.equals("east")) {
                 newRoom = currentRoom.getEastConnectingRoom();
-            } else if (direction.equals("w")) {
+            } else if (direction.equals("west")) {
                 newRoom = currentRoom.getWestConnectingRoom();
+            } else if (direction.equals("look")){
+                currentRoom.getDescription();
             }
 
             if (newRoom == null){
-                System.out.println("You cant go this way.");
-           //     player.setCurrentRoom(previousRoom);
+                System.out.println("You try going " + direction + " but it's not possible");
             } else {
                 player.setCurrentRoom(newRoom);
             }
