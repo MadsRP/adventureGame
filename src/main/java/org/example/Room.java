@@ -18,6 +18,10 @@ public class Room {
         this.eastConnectingRoom = eastConnectingRoom;
         this.westConnectingRoom = westConnectingRoom;
     }
+
+    public Room(int roomNumber){
+        this.roomNumber = roomNumber;
+    }
     public Room() {
     }
 

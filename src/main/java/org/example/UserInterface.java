@@ -17,7 +17,7 @@ public class UserInterface {
     }
 
     public void startOfTheGame(){
-        System.out.println("You are in a dungeon.");
+        am.gameStart();
 
     }
 
@@ -26,6 +26,7 @@ public class UserInterface {
             switch (menuInput) {
                 case "start":
                     startOfTheGame();
+                    do {
                         System.out.println("Which direction would you like to go?");
                         am.direction = input.nextLine().toLowerCase();
                         am.movement();
@@ -40,6 +41,7 @@ public class UserInterface {
                                 System.out.println(am.lookAround());
                                 break;
                         }
+                    }while (keepRunning = true);
                 case "exit":
                     keepRunning = false;
                     break;
