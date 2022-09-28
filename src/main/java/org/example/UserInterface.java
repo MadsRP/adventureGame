@@ -38,10 +38,8 @@ public class UserInterface {
     }
 
     public void startMenu() {
-        String userInputs1 = input.nextLine().toLowerCase();
-        String[] userInputsList1 = userInputs1.split(" ");
-        String command1 = userInputsList1[0];
-        switch (command1) {
+        String menuInput = input.nextLine().toLowerCase();
+        switch (menuInput) {
             case "start":
                 game();
                 break;
@@ -50,7 +48,7 @@ public class UserInterface {
                 System.exit(0);
                 break;
             case "help":
-                System.out.println("COMMANDS");
+                menuText();
                 break;
 
         }
@@ -75,7 +73,7 @@ public class UserInterface {
                 movement(direction);
                 break;
             case "help":
-                menuText();
+                gameText();
                 break;
             case "l",
                     "look":
@@ -87,6 +85,13 @@ public class UserInterface {
                 break;
 
         }
+    }
+
+    private void gameText() {
+        System.out.println("In this game you move around by writing 'go' and whichever cardinal direction you would like to go." +
+                "\neg. 'go north'."+
+                "\nYou can look around the room you are in by writing 'look'." +
+        "\nYou can exit the game by writing 'exit'.");
     }
 
     public void startGame() {
