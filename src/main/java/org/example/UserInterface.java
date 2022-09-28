@@ -3,6 +3,7 @@ package org.example;
 import java.util.Scanner;
 
 public class UserInterface {
+
     private AdventureMechanics am = new AdventureMechanics();
     private boolean keepRunning = true;
     private Scanner input = new Scanner(System.in);
@@ -13,7 +14,6 @@ public class UserInterface {
         System.out.println("Help with the game: help");
     }
     public String gameIntro() {
-        am.getMap().map();
         String gameIntro = "You are lost in the woods, and wander around lost, looking for anything remotely looking like civilisation. " +
                 "You stumble upon a " + am.getPlayer().getCurrentRoom().getDescription().toLowerCase();
         System.out.println(gameIntro);
@@ -112,6 +112,14 @@ public class UserInterface {
         if (am.getPlayer().isWrongDirection()){
             System.out.println("You try going " + direction + " but it's not possible.");
         }
+    }
+
+    public AdventureMechanics getAm() {
+        return am;
+    }
+
+    public void setAm(AdventureMechanics am) {
+        this.am = am;
     }
 
 }

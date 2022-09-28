@@ -10,6 +10,7 @@ public class Controller {
 
     public void run() {
         UserInterface ui = new UserInterface();
+        ui.getAm().getMap().map();
         ui.menuText();
         ui.start();
     }
