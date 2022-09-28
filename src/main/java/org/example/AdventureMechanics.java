@@ -3,42 +3,36 @@ package org.example;
 import java.util.ArrayList;
 
 public class AdventureMechanics {
-    String direction = "";
-    boolean wrongDirection = false;
-    Map map = new Map();
-    Player player = new Player(map.getFirstRoom());
+
+
+    private Map map = new Map();
+    private Player player = new Player(map.getFirstRoom());
+
     public String lookAround() {
-        String lookAround = player.currentRoom.getDescription();
+        String lookAround = player.getCurrentRoom().getDescription();
         return lookAround;
     }
-
-    public void movement() {
-
-        Room currentRoom = player.getCurrentRoom();
-        Room newRoom = null;
-
-            if (direction.equals("north")) {
-                newRoom = currentRoom.getNorthConnectingRoom();
-            } else if (direction.equals("south")) {
-                newRoom = currentRoom.getSouthConnectingRoom();
-            } else if (direction.equals("east")) {
-                newRoom = currentRoom.getEastConnectingRoom();
-            } else if (direction.equals("west")) {
-                newRoom = currentRoom.getWestConnectingRoom();
-            } else if (direction.equals("look")){
-                currentRoom.getDescription();
-            }
-
-            if (newRoom == null){
-                wrongDirection = true;
-            } else {
-                player.setCurrentRoom(newRoom);
-            }
-
-
-        }
-
+    public void playerMovement(String direction){
+        player.movement(direction);
     }
+
+    public Map getMap() {
+        return map;
+    }
+
+    public void setMap(Map map) {
+        this.map = map;
+    }
+
+    public Player getPlayer() {
+        return player;
+    }
+
+    public void setPlayer(Player player) {
+        this.player = player;
+    }
+
+}
 
 
 

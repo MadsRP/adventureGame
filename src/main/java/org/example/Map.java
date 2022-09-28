@@ -3,16 +3,6 @@ package org.example;
 import java.util.ArrayList;
 
 public class Map {
-    //private ArrayList<Integer> alreadyVisited = new ArrayList<>();
-
-
-    public Room getFirstRoom() {
-        return firstRoom;
-    }
-
-    public void setFirstRoom(Room firstRoom) {
-        this.firstRoom = firstRoom;
-    }
 
     Room room1 = new Room(1, "The Forest clearing with two gates south and east.", "the forest clearing.");
     Room room2 = new Room(2, "A Small courtyard with a well.", "the well.");
@@ -25,7 +15,7 @@ public class Map {
     Room room9 = new Room(9, "A small shrine.", "the shrine.");
     Room firstRoom = room1;
 
-    public void map(){
+    public void map() {
 
         room1.setEastConnectingRoom(room2);
         room1.setSouthConnectingRoom(room4);
@@ -56,7 +46,28 @@ public class Map {
 
     }
 
-    public void itemList(){
+    private ArrayList<Integer> alreadyVisited = new ArrayList<>();
+
+    public ArrayList<Integer> getAlreadyVisited() {
+        return alreadyVisited;
+    }
+
+    public void setAlreadyVisited(ArrayList<Integer> alreadyVisited) {
+        this.alreadyVisited = alreadyVisited;
+    }
+    public Map() {
+        map();
+    }
+
+    public Room getFirstRoom() {
+        return firstRoom;
+    }
+
+    public void setFirstRoom(Room firstRoom) {
+        this.firstRoom = firstRoom;
+    }
+
+    public void itemList() {
         Item item1 = new Item("Dagger", "A small dagger with a golden hilt");
     }
 
