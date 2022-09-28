@@ -4,10 +4,10 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 public class UserInterface {
-    AdventureMechanics am = new AdventureMechanics();
-    boolean keepRunning = true;
-    String menuInput;
-    Scanner input = new Scanner(System.in);
+    private AdventureMechanics am = new AdventureMechanics();
+    private boolean keepRunning = true;
+    private String menuInput;
+    private Scanner input = new Scanner(System.in);
 
     public void menuText() {
         System.out.println("Start the game: start");
@@ -17,12 +17,20 @@ public class UserInterface {
     }
 
     public String gameIntro() {
-        am.map();
         String gameIntro = "You are lost in the woods, and wander around lost, looking for anything remotely looking like civilisation. " +
                 "You stumble upon a " + am.player.currentRoom.getDescription().toLowerCase();
         System.out.println(gameIntro);
         return gameIntro;
     }
+
+//    public void alreadyVisited() {
+//        if (am.alreadyVisited.contains(am.player.currentRoom.getRoomNumber())) {
+//            System.out.println("You are back by " + map.player.currentRoom.getDescriptionShort());
+//        } else if (!map.alreadyVisited.contains(map.player.currentRoom.getRoomNumber())) {
+//            System.out.println("You are by " + map.player.getCurrentRoom().getDescription().toLowerCase());
+//        }
+//        map.alreadyVisited.add(map.player.getCurrentRoom().getRoomNumber());
+//    }
 
     public void gamePlay() {
         switch (am.direction) {
@@ -32,7 +40,10 @@ public class UserInterface {
                     "go n":
                 am.direction = "north";
                 am.movement();
-                am.alreadyVisited();
+                //alreadyVisited();
+                if (am.wrongDirection){
+                    System.out.println("You try going " + am.direction + " but it's not possible.");
+                }
                 break;
             case "w",
                     "west",
@@ -40,7 +51,10 @@ public class UserInterface {
                     "go w":
                 am.direction = "west";
                 am.movement();
-                am.alreadyVisited();
+                //alreadyVisited();
+                if (am.wrongDirection){
+                    System.out.println("You try going " + am.direction + " but it's not possible.");
+                }
                 break;
             case "e",
                     "east",
@@ -48,7 +62,11 @@ public class UserInterface {
                     "go e":
                 am.direction = "east";
                 am.movement();
-                am.alreadyVisited();
+                //alreadyVisited();
+                if (am.wrongDirection){
+                    System.out.println(am.player.currentRoom);
+                    System.out.println("You try going " + am.direction + " but it's not possible.");
+                }
                 break;
             case "s",
                     "south",
@@ -56,7 +74,10 @@ public class UserInterface {
                     "go s":
                 am.direction = "south";
                 am.movement();
-                am.alreadyVisited();
+                //alreadyVisited();
+                if (am.wrongDirection){
+                    System.out.println("You try going " + am.direction + " but it's not possible.");
+                }
                 break;
         }
     }

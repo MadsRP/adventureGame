@@ -1,5 +1,8 @@
 package org.example;
 
+import java.lang.reflect.Array;
+import java.util.ArrayList;
+
 public class Room {
 
     private int roomNumber;
@@ -10,6 +13,7 @@ public class Room {
     private Room westConnectingRoom;
     private String description;
     private String descriptionShort;
+    private ArrayList<Item>itemList = new ArrayList<>();
 
     public Room(Room northConnectingRoom, Room southConnectingRoom, Room eastConnectingRoom, Room westConnectingRoom ){
         this.northConnectingRoom = northConnectingRoom;
@@ -28,11 +32,12 @@ public class Room {
     public Room(int roomNumber){
         this.roomNumber = roomNumber;
     }
+
+    public Room(ArrayList itemList){
+        this.itemList = itemList;
+    }
     public Room() {
     }
-
-
-
 
     public String getDescriptionShort() {
         return descriptionShort;
