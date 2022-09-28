@@ -8,10 +8,6 @@ public class AdventureMechanics {
     private Map map = new Map();
     private Player player = new Player(map.getFirstRoom());
 
-    public String lookAround() {
-        String lookAround = player.getCurrentRoom().getDescription();
-        return lookAround;
-    }
     public void playerMovement(String direction){
         player.movement(direction);
     }

@@ -1,7 +1,5 @@
 package org.example;
 
-import org.w3c.dom.ls.LSOutput;
-
 import java.util.Scanner;
 
 public class UserInterface {
@@ -37,7 +35,7 @@ public class UserInterface {
 
     }
 
-    public void startMenu() {
+    public void start() {
         String menuInput = input.nextLine().toLowerCase();
         switch (menuInput) {
             case "start":
@@ -94,11 +92,6 @@ public class UserInterface {
         "\nYou can exit the game by writing 'exit'.");
     }
 
-    public void startGame() {
-
-            startMenu();
-
-    }
 
     public void lookAround(){
         String lookAround = am.getPlayer().getCurrentRoom().getDescription();
