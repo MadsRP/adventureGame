@@ -21,11 +21,17 @@ public class Player {
         this.currentRoom = currentRoom;
         this.inventory = inventory;
     }
+
+    public String lookAround(){
+        String currentRoomDescription = currentRoom.getDescription();
+        String lookAround = "You are by " + currentRoomDescription.toLowerCase();
+        return lookAround;
+
+    }
     public void movement(String direction) {
 
         currentRoom = getCurrentRoom();
         Room newRoom = null;
-
 
         if (direction.charAt(0) == 'n') {
             newRoom = currentRoom.getNorthConnectingRoom();
@@ -35,8 +41,6 @@ public class Player {
             newRoom = currentRoom.getEastConnectingRoom();
         } else if (direction.charAt(0) == 'w') {
             newRoom = currentRoom.getWestConnectingRoom();
-        } else if (direction.charAt(0) == 'l'){
-            newRoom = currentRoom;
         }
 
         if (newRoom == null){

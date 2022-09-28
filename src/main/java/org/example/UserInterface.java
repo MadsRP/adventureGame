@@ -94,17 +94,15 @@ public class UserInterface {
 
 
     public void lookAround(){
-        String lookAround = am.getPlayer().getCurrentRoom().getDescription();
-        System.out.println("You are by " + lookAround.toLowerCase());
+        System.out.println(am.getPlayer().lookAround());
     }
 
     public void alreadyVisited() {
-        if (am.getMap().getAlreadyVisited().contains(am.getPlayer().getCurrentRoom().getRoomNumber())) {
-            System.out.println("You are back by " + am.getPlayer().getCurrentRoom().getDescriptionShort());
-        } else if (!am.getMap().getAlreadyVisited().contains(am.getPlayer().getCurrentRoom().getRoomNumber())) {
-            System.out.println("You find " + am.getPlayer().getCurrentRoom().getDescription().toLowerCase());
+        if (!am.alreadyVisited()) {
+            System.out.println("You are by " + am.getPlayer().getCurrentRoom().getDescription().toLowerCase());
+        } else if (am.alreadyVisited()) {
+            System.out.println("You are by " + am.getPlayer().getCurrentRoom().getDescriptionShort().toLowerCase());
         }
-        am.getMap().getAlreadyVisited().add(am.getPlayer().getCurrentRoom().getRoomNumber());
     }
 
     public void movement(String direction){

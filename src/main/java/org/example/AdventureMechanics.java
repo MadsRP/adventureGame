@@ -12,6 +12,18 @@ public class AdventureMechanics {
         player.movement(direction);
     }
 
+    public boolean alreadyVisited() {
+        boolean alreadyVisited;
+        if (!map.getAlreadyVisited().contains(player.getCurrentRoom().getRoomNumber())) {
+            alreadyVisited = false;
+            map.getAlreadyVisited().add(player.getCurrentRoom().getRoomNumber());
+        } else
+        {
+            alreadyVisited = true;
+        }
+        return alreadyVisited;
+    }
+
     public Map getMap() {
         return map;
     }
