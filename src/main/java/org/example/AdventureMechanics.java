@@ -6,6 +6,10 @@ public class AdventureMechanics {
 
 
     private Map map = new Map();
+
+
+
+    private ItemList itemList = new ItemList();
     private Player player = new Player(map.getFirstRoom());
 
     public void playerMovement(String direction){
@@ -38,6 +42,14 @@ public class AdventureMechanics {
 
     public void setPlayer(Player player) {
         this.player = player;
+    }
+
+    public ItemList getItemList() {
+        return itemList;
+    }
+
+    public void setItemList(ItemList itemList) {
+        this.itemList = itemList;
     }
 
 }

@@ -5,13 +5,6 @@ import java.util.ArrayList;
 
 public class Player {
 
-    public ArrayList<Item> getInventory() {
-        return inventory;
-    }
-
-    public void setInventory(ArrayList<Item> inventory) {
-        this.inventory = inventory;
-    }
 
     private Room currentRoom;
     private ArrayList<Item> inventory = new ArrayList<>();
@@ -22,9 +15,16 @@ public class Player {
         this.inventory = inventory;
     }
 
+    public Player (Room currentRoom){
+        this.currentRoom = currentRoom;
+    }
+
+
     public String lookAround(){
         String currentRoomDescription = currentRoom.getDescription();
         String lookAround = "You are by " + currentRoomDescription.toLowerCase();
+
+
         return lookAround;
 
     }
@@ -53,10 +53,14 @@ public class Player {
     }
 
 
-
-    public Player (Room currentRoom){
-        this.currentRoom = currentRoom;
+    public void setInventory(ArrayList<Item> inventory) {
+        this.inventory = inventory;
     }
+
+    public ArrayList<Item> getInventory() {
+        return inventory;
+    }
+
     public Room getCurrentRoom() {
         return currentRoom;
     }

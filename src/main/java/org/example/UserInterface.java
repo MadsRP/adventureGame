@@ -95,6 +95,7 @@ public class UserInterface {
 
     public void lookAround(){
         System.out.println(am.getPlayer().lookAround());
+        System.out.println(am.getMap().itemListForRooms());
     }
 
     public void alreadyVisited() {

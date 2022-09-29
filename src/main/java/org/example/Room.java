@@ -13,6 +13,18 @@ public class Room {
     private Room westConnectingRoom;
     private String description;
     private String descriptionShort;
+
+
+    private Item item;
+
+    public ArrayList<Item> getItemList() {
+        return itemList;
+    }
+
+    public void setItemList(ArrayList<Item> itemList) {
+        this.itemList = itemList;
+    }
+
     private ArrayList<Item>itemList = new ArrayList<>();
 
     public Room(Room northConnectingRoom, Room southConnectingRoom, Room eastConnectingRoom, Room westConnectingRoom ){
@@ -20,6 +32,10 @@ public class Room {
         this.southConnectingRoom = southConnectingRoom;
         this.eastConnectingRoom = eastConnectingRoom;
         this.westConnectingRoom = westConnectingRoom;
+    }
+
+    public Room(Item item){
+        this.item = item;
     }
 
     public Room(int roomNumber, String description, String descriptionShort)
@@ -100,6 +116,14 @@ public class Room {
 
     public void setRoomNumber(int roomNumber) {
         this.roomNumber = roomNumber;
+    }
+
+    public Item getItem() {
+        return item;
+    }
+
+    public void setItem(Item item) {
+        this.item = item;
     }
 
 }

@@ -4,8 +4,11 @@ public class Main {
 
 
     public static void main(String[] args) {
-        Controller controller= new Controller();
-        controller.run();
+        UserInterface ui = new UserInterface();
+        ui.getAm().getMap().map();
+        ui.getAm().getMap().itemsInRooms();
+        ui.menuText();
+        ui.start();
 
     }
 }
