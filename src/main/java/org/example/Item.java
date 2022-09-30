@@ -2,13 +2,10 @@ package org.example;
 
 public class Item {
 
-    String itemName;
-    String itemDescpription;
-
-
-
-    Room room = new Room();
-    Room currentRoom = new Room();
+    private String itemName;
+    private String itemDescpription;
+    private Room room = new Room();
+    private Room currentRoom = new Room();
 
     public Item(String itemName, String itemDescription){
         this.itemName = itemName;

@@ -57,7 +57,7 @@ public class Player {
         if (currentRoom.getItemList().size()>1){
         for (Item pickUpItem: currentRoom.getItemList()) {
             {
-                if (userInputs.contains(pickUpItem.itemName))
+                if (userInputs.contains(pickUpItem.getItemName()))
                     inventory.add(pickUpItem);
             }
         }
@@ -70,7 +70,7 @@ public class Player {
     public void dropItem(String userInputs){
         currentRoom = getCurrentRoom();
         for (Item dropItem: inventory) {{
-            if (userInputs.contains(dropItem.itemName))
+            if (userInputs.contains(dropItem.getItemName()))
                 inventory.remove(dropItem);
             currentRoom.getItemList().add(dropItem);
             }

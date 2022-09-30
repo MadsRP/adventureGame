@@ -16,17 +16,17 @@ public class Map {
     private ArrayList<Item> itemListRoom8 = new ArrayList<>();
     private ArrayList<Item> itemListRoom9 = new ArrayList<>();
     private ItemList itemList = new ItemList();
-    Room currentRoom = new Room();
-    Room room1 = new Room(1, "The Forest clearing with two gates south and east.", "the forest clearing.");
-    Room room2 = new Room(2, "A Small courtyard with a well.", "the well.");
-    Room room3 = new Room(3, "A courtyard with a moonlit sculpture.", "the courtyard with a sculpture.");
-    Room room4 = new Room(4, "A small shack with random shit.", "the shack.");
-    Room room5 = new Room(5, "the patio of the house.", "the patio.");
-    Room room6 = new Room(6, "A small garden full of dangerous looking plants.", "the garden.");
-    Room room7 = new Room(7, "A small field with a scarecrow.", "the field.");
-    Room room8 = new Room(8, "A courtyard with set of stairs leading to house.", "the stairs.");
-    Room room9 = new Room(9, "A small shrine.", "the shrine.");
-    Room firstRoom = room1;
+    private Room currentRoom = new Room();
+    private Room room1 = new Room(1, "The Forest clearing with two gates south and east.", "the forest clearing.");
+    private Room room2 = new Room(2, "A Small courtyard with a well.", "the well.");
+    private Room room3 = new Room(3, "A courtyard with a moonlit sculpture.", "the courtyard with a sculpture.");
+    private Room room4 = new Room(4, "A small shack with random shit.", "the shack.");
+    private Room room5 = new Room(5, "the patio of the house.", "the patio.");
+    private Room room6 = new Room(6, "A small garden full of dangerous looking plants.", "the garden.");
+    private Room room7 = new Room(7, "A small field with a scarecrow.", "the field.");
+    private Room room8 = new Room(8, "A courtyard with set of stairs leading to house.", "the stairs.");
+    private Room room9 = new Room(9, "A small shrine.", "the shrine.");
+    private Room firstRoom = room1;
 
     public Map(){
     }

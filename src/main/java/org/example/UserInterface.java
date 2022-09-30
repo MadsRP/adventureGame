@@ -92,7 +92,7 @@ public class UserInterface {
             case "inv",
                     "inventory":
                 for (Item items : am.getPlayer().getInventory()){
-                    System.out.println("inventory: " + items.itemName);
+                    System.out.println("inventory: " + items.getItemName());
                 }
                 break;
             case "exit":
@@ -117,7 +117,7 @@ public class UserInterface {
             System.out.println("You find no items in " + am.getPlayer().getCurrentRoom().getDescriptionShort());
         } else {
             for (Item items : am.getPlayer().getCurrentRoom().getItemList()) {
-                System.out.println(items.itemName);
+                System.out.println(items.getItemName());
             }
         }
     }

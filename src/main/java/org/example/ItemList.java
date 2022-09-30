@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Random;
 
 public class ItemList {
+
     private ArrayList <Item> numberOfRemovedItems = new ArrayList<>();
     private Item item1 = new Item("1");
     private Item item2 = new Item("2");
