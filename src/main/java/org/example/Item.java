@@ -14,13 +14,16 @@ public class Item {
         this.itemName = itemName;
         this.itemDescpription = itemDescription;
     }
+    public Item(String itemName){
+        this.itemName = itemName;
+    }
     public Item(){
     }
     public Item(Room currentRoom){
         this.currentRoom = currentRoom;
     }
 
-    public String getItemName(Room currentRoom) {
+    public String getItemName() {
         return itemName;
     }
 

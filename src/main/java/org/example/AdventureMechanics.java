@@ -6,9 +6,6 @@ public class AdventureMechanics {
 
 
     private Map map = new Map();
-
-
-
     private ItemList itemList = new ItemList();
     private Player player = new Player(map.getFirstRoom());
 
@@ -26,6 +23,9 @@ public class AdventureMechanics {
             alreadyVisited = true;
         }
         return alreadyVisited;
+    }
+
+    public void setInventory(){
     }
 
     public Map getMap() {

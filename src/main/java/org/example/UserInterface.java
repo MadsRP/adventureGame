@@ -9,6 +9,7 @@ public class UserInterface {
     private Scanner input = new Scanner(System.in);
 
     public void menuText() {
+
         System.out.println("Start the game: start");
         System.out.println("Exit the game: exit");
         System.out.println("Help with the game: help");
@@ -27,8 +28,18 @@ public class UserInterface {
         String userInputs = input.nextLine().toLowerCase();
         String[] userInputsList = userInputs.split(" ");
         String userCommand = userInputsList[0];
-        if (userInputsList.length > 1) {
-            userCommand = userInputsList[1];
+        if (userInputsList.length>1){
+            if (userCommand.equals("drop") || userCommand.equals("d")){
+                am.getPlayer().player();
+                userCommand = userInputsList[1];
+                am.getPlayer().dropItem(userInputs);
+            } else if (userCommand.equals("take") || userCommand.equals("t")){
+                userCommand = userInputsList[1];
+                am.getPlayer().pickUpItem(userInputs);
+            }else {
+                userCommand = userInputsList[1];
+            }
+
         }
         gamePlay(userCommand);
     }while(keepRunning);
@@ -52,30 +63,37 @@ public class UserInterface {
         }
     }
 
-    public void gamePlay(String direction) {
-        switch (direction){
+    public void gamePlay(String userInputs) {
+        switch (userInputs){
             case "n",
                     "north":
-                movement(direction);
+                movement(userInputs);
                 break;
             case "w",
                     "west":
-                movement(direction);
+                movement(userInputs);
                 break;
             case "e",
                     "east":
-                movement(direction);
+                movement(userInputs);
                 break;
             case "s",
                     "south":
-                movement(direction);
+                movement(userInputs);
                 break;
+
             case "help":
                 gameText();
                 break;
             case "l",
                     "look":
                 lookAround();
+                break;
+            case "inv",
+                    "inventory":
+                for (Item items : am.getPlayer().getInventory()){
+                    System.out.println("inventory: " + items.itemName);
+                }
                 break;
             case "exit":
                 System.out.println("Quitting game.");
@@ -95,7 +113,13 @@ public class UserInterface {
 
     public void lookAround(){
         System.out.println(am.getPlayer().lookAround());
-        System.out.println(am.getMap().itemListForRooms());
+        if(am.getPlayer().getCurrentRoom().getItemList().size() == 0){
+            System.out.println("You find no items in " + am.getPlayer().getCurrentRoom().getDescriptionShort());
+        } else {
+            for (Item items : am.getPlayer().getCurrentRoom().getItemList()) {
+                System.out.println(items.itemName);
+            }
+        }
     }
 
     public void alreadyVisited() {
