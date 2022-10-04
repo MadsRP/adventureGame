@@ -11,10 +11,7 @@ public class Player {
     private boolean wrongDirection;
     private ItemList iventoryItems = new ItemList();
     private int health = 100;
-
     private boolean itemExchange = true;
-
-
 
     public Player(Room currentRoom, ArrayList inventory) {
         this.currentRoom = currentRoom;
@@ -27,15 +24,15 @@ public class Player {
 
     public Player() {
     }
-
-
-
+    public void player() {
+        inventory.add(iventoryItems.getItem2());
+        inventory.add(iventoryItems.getItem1());
+    }
     public String lookAround() {
         String lookAround = currentRoom.getDescription();
         return lookAround;
 
     }
-
     public void movement(String direction) {
 
         currentRoom = getCurrentRoom();
@@ -57,8 +54,6 @@ public class Player {
             setCurrentRoom(newRoom);
         }
     }
-
-
     public void pickUpItem(String userInputs) {
         Item takeItem = null;
         for(Item item : currentRoom.getItemList()) {
@@ -75,26 +70,22 @@ public class Player {
             currentRoom.getItemList().remove(takeItem);
 
     }
-    public void player() {
-        inventory.add(iventoryItems.getItem2());
-        inventory.add(iventoryItems.getItem1());
-    }
-
     public void dropItem(String userInputs) {
         Item dropItem = null;
         for(Item item : inventory) {
-            if (!item.getItemName().toLowerCase().equalsIgnoreCase(userInputs)){
-                itemExchange = false;
+            if (item.getItemName().toLowerCase().equalsIgnoreCase(userInputs)){
+                dropItem = item;
+                itemExchange = true;
             }
         }
         if (dropItem == null) {
             itemExchange = false;
             return;
         }
-
         inventory.remove(dropItem);
         currentRoom.getItemList().add(dropItem);
-
+    }
+    public void eatItem(String userInputs){
 
     }
 
