@@ -14,10 +14,10 @@ public class Room {
     private String description;
     private String descriptionShort;
     private Item item;
-    private ArrayList<Item>itemList = new ArrayList<>();
+    private ArrayList<Item> itemList = new ArrayList<>();
 
 
-    public Room(Room northConnectingRoom, Room southConnectingRoom, Room eastConnectingRoom, Room westConnectingRoom, ArrayList itemList){
+    public Room(Room northConnectingRoom, Room southConnectingRoom, Room eastConnectingRoom, Room westConnectingRoom, ArrayList itemList) {
         this.northConnectingRoom = northConnectingRoom;
         this.southConnectingRoom = southConnectingRoom;
         this.eastConnectingRoom = eastConnectingRoom;
@@ -25,31 +25,31 @@ public class Room {
         this.itemList = itemList;
     }
 
-    public Room(Room northConnectingRoom, Room southConnectingRoom, Room eastConnectingRoom, Room westConnectingRoom){
+    public Room(Room northConnectingRoom, Room southConnectingRoom, Room eastConnectingRoom, Room westConnectingRoom) {
         this.northConnectingRoom = northConnectingRoom;
         this.southConnectingRoom = southConnectingRoom;
         this.eastConnectingRoom = eastConnectingRoom;
         this.westConnectingRoom = westConnectingRoom;
     }
 
-    public Room(Item item){
+    public Room(Item item) {
         this.item = item;
     }
 
-    public Room(int roomNumber, String description, String descriptionShort)
-    {
+    public Room(int roomNumber, String description, String descriptionShort) {
         this.roomNumber = roomNumber;
         this.description = description;
         this.descriptionShort = descriptionShort;
     }
 
-    public Room(int roomNumber){
+    public Room(int roomNumber) {
         this.roomNumber = roomNumber;
     }
 
-    public Room(ArrayList itemList){
+    public Room(ArrayList itemList) {
         this.itemList = itemList;
     }
+
     public Room() {
     }
 
@@ -60,6 +60,7 @@ public class Room {
     public void setDescriptionShort(String descriptionShort) {
         this.descriptionShort = descriptionShort;
     }
+
     public Room getNorthConnectingRoom() {
         return northConnectingRoom;
     }

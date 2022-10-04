@@ -10,27 +10,32 @@ public class Player {
     private ArrayList<Item> inventory = new ArrayList<>();
     private boolean wrongDirection;
     private ItemList iventoryItems = new ItemList();
+    private int health = 100;
 
-    public Player (Room currentRoom, ArrayList inventory){
+    private boolean itemExchange = true;
+
+
+
+    public Player(Room currentRoom, ArrayList inventory) {
         this.currentRoom = currentRoom;
         this.inventory = inventory;
     }
 
-    public Player(){
-    }
-    public void player(){
-        inventory.add(iventoryItems.randomItem());
-        inventory.add(iventoryItems.randomItem());
+    public Player(int health) {
+        this.health = health;
     }
 
+    public Player() {
+    }
 
 
-    public String lookAround(){
-        String currentRoomDescription = currentRoom.getDescription();
-        String lookAround = "You are by " + currentRoomDescription.toLowerCase();
+
+    public String lookAround() {
+        String lookAround = currentRoom.getDescription();
         return lookAround;
 
     }
+
     public void movement(String direction) {
 
         currentRoom = getCurrentRoom();
@@ -52,29 +57,45 @@ public class Player {
             setCurrentRoom(newRoom);
         }
     }
-    public void pickUpItem(String userInputs){
-        currentRoom = getCurrentRoom();
-        if (currentRoom.getItemList().size()>1){
-        for (Item pickUpItem: currentRoom.getItemList()) {
-            {
-                if (userInputs.contains(pickUpItem.getItemName()))
-                    inventory.add(pickUpItem);
+
+
+    public void pickUpItem(String userInputs) {
+        Item takeItem = null;
+        for(Item item : currentRoom.getItemList()) {
+            if (item.getItemName().equalsIgnoreCase(userInputs)){
+                takeItem = item;
+                itemExchange = true;
             }
+            }
+        if (takeItem == null) {
+            itemExchange = false;
+            return;
         }
-        } else{
-                inventory.addAll(currentRoom.getItemList());
-                currentRoom.getItemList().remove(0);
-            }
+            inventory.add(takeItem);
+            currentRoom.getItemList().remove(takeItem);
+
+    }
+    public void player() {
+        inventory.add(iventoryItems.getItem2());
+        inventory.add(iventoryItems.getItem1());
     }
 
-    public void dropItem(String userInputs){
-        currentRoom = getCurrentRoom();
-        for (Item dropItem: inventory) {{
-            if (userInputs.contains(dropItem.getItemName()))
-                inventory.remove(dropItem);
-            currentRoom.getItemList().add(dropItem);
+    public void dropItem(String userInputs) {
+        Item dropItem = null;
+        for(Item item : inventory) {
+            if (!item.getItemName().toLowerCase().equalsIgnoreCase(userInputs)){
+                itemExchange = false;
             }
         }
+        if (dropItem == null) {
+            itemExchange = false;
+            return;
+        }
+
+        inventory.remove(dropItem);
+        currentRoom.getItemList().add(dropItem);
+
+
     }
 
     public ItemList getIventoryItems() {
@@ -86,11 +107,11 @@ public class Player {
         this.iventoryItems = iventoryItems;
     }
 
-    private  ArrayList<Item>inventory(){
+    private ArrayList<Item> inventory() {
         return inventory;
     }
 
-    public Player (Room currentRoom){
+    public Player(Room currentRoom) {
         this.currentRoom = currentRoom;
     }
 
@@ -117,5 +138,23 @@ public class Player {
     public void setWrongDirection(boolean wrongDirection) {
         this.wrongDirection = wrongDirection;
     }
+
+    public int getHealth() {
+        return health;
+    }
+
+    public void setHealth(int health) {
+        this.health = health;
+    }
+
+    public boolean isItemExchange() {
+        return itemExchange;
+    }
+
+    public void setItemExchange(boolean itemExchange) {
+        this.itemExchange = itemExchange;
+    }
+
+
 
 }

@@ -3,13 +3,14 @@ package org.example;
 public class Item {
 
     private String itemName;
-    private String itemDescpription;
+    private String itemDescription;
     private Room room = new Room();
     private Room currentRoom = new Room();
 
+
     public Item(String itemName, String itemDescription){
         this.itemName = itemName;
-        this.itemDescpription = itemDescription;
+        this.itemDescription = itemDescription;
     }
     public Item(String itemName){
         this.itemName = itemName;
@@ -27,12 +28,12 @@ public class Item {
     public void setItemName(String itemName) {
         this.itemName = itemName;
     }
-    public String getItemDescpription() {
-        return itemDescpription;
+    public String getItemDescription() {
+        return itemDescription;
     }
 
-    public void setItemDescpription(String itemDescpription) {
-        this.itemDescpription = itemDescpription;
+    public void setItemDescription(String itemDescription) {
+        this.itemDescription = itemDescription;
     }
 
 

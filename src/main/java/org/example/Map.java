@@ -36,6 +36,10 @@ public class Map {
         room1.setEastConnectingRoom(room2);
         room1.setSouthConnectingRoom(room4);
         room1.setItemList(itemListRoom1);
+        itemListRoom1.add(itemList.getItem1());
+        itemListRoom1.add(itemList.getItem2());
+        itemListRoom1.add(itemList.getItem3());
+        itemListRoom1.add(itemList.getRedApple());
 
         room2.setEastConnectingRoom(room3);
         room2.setWestConnectingRoom(room1);
@@ -69,38 +73,36 @@ public class Map {
         room9.setWestConnectingRoom(room8);
         room9.setNorthConnectingRoom(room6);
         room9.setItemList(itemListRoom9);
-
-        for(int randomNumber = new Random().nextInt(2); randomNumber>0;randomNumber--) {
-            itemListRoom1.add(itemList.randomItem());
-        }
-
-        for(int randomNumber = new Random().nextInt(4); randomNumber>0;randomNumber--) {
-            itemListRoom2.add(itemList.randomItem());
-        }
-
-        for(int randomNumber = new Random().nextInt(2); randomNumber>0;randomNumber--) {
-            itemListRoom3.add(itemList.randomItem());
-        }
-        for(int randomNumber = new Random().nextInt(3); randomNumber>0;randomNumber--) {
-            itemListRoom4.add(itemList.randomItem());
-        }
-        for(int randomNumber = new Random().nextInt(3); randomNumber>0;randomNumber--) {
-            itemListRoom5.add(itemList.randomItem());
-        }
-        for(int randomNumber = new Random().nextInt(2); randomNumber>0;randomNumber--) {
-            itemListRoom6.add(itemList.randomItem());
-        }
-        for(int randomNumber = new Random().nextInt(3); randomNumber>0;randomNumber--) {
-            itemListRoom7.add(itemList.randomItem());
-        }
-        for(int randomNumber = new Random().nextInt(4); randomNumber>0;randomNumber--) {
-            itemListRoom8.add(itemList.randomItem());
-        }
-        for(int randomNumber = new Random().nextInt(2); randomNumber>0;randomNumber--) {
-            itemListRoom9.add(itemList.randomItem());
-        }
-
-
+//
+//        for(int randomNumber = new Random().nextInt(2); randomNumber>0;randomNumber--) {
+//            itemListRoom1.add(itemList.randomItem());
+//        }
+//
+//        for(int randomNumber = new Random().nextInt(4); randomNumber>0;randomNumber--) {
+//            itemListRoom2.add(itemList.randomItem());
+//        }
+//
+//        for(int randomNumber = new Random().nextInt(2); randomNumber>0;randomNumber--) {
+//            itemListRoom3.add(itemList.randomItem());
+//        }
+//        for(int randomNumber = new Random().nextInt(3); randomNumber>0;randomNumber--) {
+//            itemListRoom4.add(itemList.randomItem());
+//        }
+//        for(int randomNumber = new Random().nextInt(3); randomNumber>0;randomNumber--) {
+//            itemListRoom5.add(itemList.randomItem());
+//        }
+//        for(int randomNumber = new Random().nextInt(2); randomNumber>0;randomNumber--) {
+//            itemListRoom6.add(itemList.randomItem());
+//        }
+//        for(int randomNumber = new Random().nextInt(3); randomNumber>0;randomNumber--) {
+//            itemListRoom7.add(itemList.randomItem());
+//        }
+//        for(int randomNumber = new Random().nextInt(4); randomNumber>0;randomNumber--) {
+//            itemListRoom8.add(itemList.randomItem());
+//        }
+//        for(int randomNumber = new Random().nextInt(2); randomNumber>0;randomNumber--) {
+//            itemListRoom9.add(itemList.randomItem());
+//        }
 
     }
 

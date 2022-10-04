@@ -25,7 +25,9 @@ public class AdventureMechanics {
         return alreadyVisited;
     }
 
-    public void setInventory(){
+
+    public int getCurrentHealth(){
+        return player.getHealth();
     }
 
     public Map getMap() {

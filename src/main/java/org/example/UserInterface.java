@@ -1,5 +1,7 @@
 package org.example;
 
+import org.w3c.dom.ls.LSOutput;
+
 import java.util.Scanner;
 
 public class UserInterface {
@@ -21,21 +23,36 @@ public class UserInterface {
         return gameIntro;
     }
 
+    public String currentHealth(){
+        int currentHealth = am.getCurrentHealth();
+        String currentHealthOutput = "You currently have " + currentHealth + " health";
+        return currentHealthOutput;
+    }
+
     public void game() {
         gameIntro();
         do{
-        System.out.println("Which direction would you like to go?");
+        System.out.println("Which action would you like to take?");
         String userInputs = input.nextLine().toLowerCase();
         String[] userInputsList = userInputs.split(" ");
         String userCommand = userInputsList[0];
         if (userInputsList.length>1){
             if (userCommand.equals("drop") || userCommand.equals("d")){
-                am.getPlayer().player();
                 userCommand = userInputsList[1];
-                am.getPlayer().dropItem(userInputs);
+                am.getPlayer().dropItem(userCommand);
+                if (am.getPlayer().isItemExchange() == true){
+                    System.out.println("You drop a " + userCommand);
+                } else {
+                    System.out.println("Cannot find " + userCommand);
+                }
             } else if (userCommand.equals("take") || userCommand.equals("t")){
                 userCommand = userInputsList[1];
-                am.getPlayer().pickUpItem(userInputs);
+                am.getPlayer().pickUpItem(userCommand);
+                if (am.getPlayer().isItemExchange() == true){
+                    System.out.println("You take a " + userCommand);
+                } else {
+                    System.out.println("Cannot find " + userCommand);
+                }
             }else {
                 userCommand = userInputsList[1];
             }
@@ -49,7 +66,7 @@ public class UserInterface {
     public void start() {
         String menuInput = input.nextLine().toLowerCase();
         switch (menuInput) {
-            case "start":
+            case "start", "s":
                 game();
                 break;
             case "exit":
@@ -65,23 +82,12 @@ public class UserInterface {
 
     public void gamePlay(String userInputs) {
         switch (userInputs){
-            case "n",
-                    "north":
+            case "n","north",
+                    "s","south",
+                    "w","west",
+                    "e","east":
                 movement(userInputs);
                 break;
-            case "w",
-                    "west":
-                movement(userInputs);
-                break;
-            case "e",
-                    "east":
-                movement(userInputs);
-                break;
-            case "s",
-                    "south":
-                movement(userInputs);
-                break;
-
             case "help":
                 gameText();
                 break;
@@ -91,10 +97,17 @@ public class UserInterface {
                 break;
             case "inv",
                     "inventory":
+                if (am.getPlayer().getInventory().size() == 0){
+                    System.out.println("You have no items");
+                }
                 for (Item items : am.getPlayer().getInventory()){
                     System.out.println("inventory: " + items.getItemName());
                 }
                 break;
+            case "health",
+                        "hp":
+                System.out.println(currentHealth());
+            break;
             case "exit":
                 System.out.println("Quitting game.");
                 System.exit(0);
@@ -112,13 +125,17 @@ public class UserInterface {
 
 
     public void lookAround(){
-        System.out.println(am.getPlayer().lookAround());
+        System.out.println("You are in a " + am.getPlayer().lookAround());
         if(am.getPlayer().getCurrentRoom().getItemList().size() == 0){
             System.out.println("You find no items in " + am.getPlayer().getCurrentRoom().getDescriptionShort());
         } else {
             for (Item items : am.getPlayer().getCurrentRoom().getItemList()) {
                 System.out.println(items.getItemName());
+                if (items == null){
+                    am.getPlayer().getCurrentRoom().getItemList().remove(null);
+                }
             }
+
         }
     }
 
