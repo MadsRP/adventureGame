@@ -1,7 +1,6 @@
 package org.example;
 
 import java.util.ArrayList;
-import java.util.Random;
 
 public class Map {
 
@@ -36,43 +35,59 @@ public class Map {
         room1.setEastConnectingRoom(room2);
         room1.setSouthConnectingRoom(room4);
         room1.setItemList(itemListRoom1);
-        itemListRoom1.add(itemList.getItem1());
-        itemListRoom1.add(itemList.getItem2());
-        itemListRoom1.add(itemList.getItem3());
+        itemListRoom1.add(itemList.getSword());
+        itemListRoom1.add(itemList.getPaper());
+        itemListRoom1.add(itemList.getCandle());
         itemListRoom1.add(itemList.getRedApple());
 
         room2.setEastConnectingRoom(room3);
         room2.setWestConnectingRoom(room1);
         room2.setItemList(itemListRoom2);
-
+        itemListRoom2.add(itemList.getRedApple());
+        itemListRoom2.add(itemList.getRedApple());
+        itemListRoom2.add(itemList.getPaper());
+        itemListRoom2.add(itemList.getPaper());
 
         room3.setWestConnectingRoom(room2);
         room3.setSouthConnectingRoom(room6);
         room3.setItemList(itemListRoom3);
+        itemListRoom3.add(itemList.getPaper());
 
         room4.setNorthConnectingRoom(room1);
         room4.setSouthConnectingRoom(room7);
         room4.setItemList(itemListRoom4);
+        itemListRoom4.add(itemList.getRedApple());
 
         room5.setSouthConnectingRoom(room8);
         room5.setItemList(itemListRoom5);
+        itemListRoom5.add(itemList.getStarFruit());
+        itemListRoom5.add(itemList.getStarFruit());
+        itemListRoom5.add(itemList.getStarFruit());
+
 
         room6.setNorthConnectingRoom(room3);
         room6.setSouthConnectingRoom(room9);
         room6.setItemList(itemListRoom6);
+        itemListRoom6.add(itemList.getSword());
+        itemListRoom6.add(itemList.getCandle());
 
         room7.setNorthConnectingRoom(room4);
         room7.setEastConnectingRoom(room8);
         room7.setItemList(itemListRoom7);
+        itemListRoom7.add(itemList.getPaper());
+        itemListRoom7.add(itemList.getPaper());
 
         room8.setNorthConnectingRoom(room5);
         room8.setWestConnectingRoom(room7);
         room8.setEastConnectingRoom(room9);
         room8.setItemList(itemListRoom8);
+        itemListRoom8.add(itemList.getPaper());
+        itemListRoom8.add(itemList.getCandle());
 
         room9.setWestConnectingRoom(room8);
         room9.setNorthConnectingRoom(room6);
         room9.setItemList(itemListRoom9);
+        itemListRoom9.add(itemList.getPaper());
 //
 //        for(int randomNumber = new Random().nextInt(2); randomNumber>0;randomNumber--) {
 //            itemListRoom1.add(itemList.randomItem());

@@ -6,8 +6,13 @@ public class Item {
     private String itemDescription;
     private Room room = new Room();
     private Room currentRoom = new Room();
+    private Edible edible;
 
-
+    public Item(String itemName, String itemDescription, Edible edible){
+        this.itemName = itemName;
+        this.itemDescription = itemDescription;
+        this.edible = edible;
+    }
     public Item(String itemName, String itemDescription){
         this.itemName = itemName;
         this.itemDescription = itemDescription;
@@ -15,7 +20,11 @@ public class Item {
     public Item(String itemName){
         this.itemName = itemName;
     }
+    public Item(Edible edible){
+        this.edible = edible;
+    }
     public Item(){
+
     }
     public Item(Room currentRoom){
         this.currentRoom = currentRoom;
@@ -50,6 +59,14 @@ public class Item {
 
     public void setRoom(Room room) {
         this.room = room;
+    }
+
+    public Edible getEdible() {
+        return edible;
+    }
+
+    public void setEdible(Edible edible) {
+        this.edible = edible;
     }
 
 

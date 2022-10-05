@@ -7,38 +7,14 @@ public class ItemList {
 
     private ArrayList <Item> numberOfRemovedItems = new ArrayList<>();
     private ArrayList <Item> listOfItems = new ArrayList<>();
+    private Food food = new Food();
     private Item item = new Item();
-    private Item item1 = new Item("Sword");
-    private Item item2 = new Item("Paper");
-    private Item item3 = new Item("Candle");
-
-    public Food getRedApple() {
-        return redApple;
-    }
-
-    public void setRedApple(Food redApple) {
-        this.redApple = redApple;
-    }
-
-    public Food getRottenApple() {
-        return rottenApple;
-    }
-
-    public void setRottenApple(Food rottenApple) {
-        this.rottenApple = rottenApple;
-    }
-
-    public Food getGoldenApple() {
-        return goldenApple;
-    }
-
-    public void setGoldenApple(Food goldenApple) {
-        this.goldenApple = goldenApple;
-    }
-
-    private Food redApple = new Food("Apple", "a red apple", 30);
-    private Food rottenApple = new Food("Rotten Apple", "a rotten red apple", -30);
-    private Food goldenApple = new Food("Golden Apple", "a beautiful golden apple", 100);
+    private Item sword = new Item("Sword");
+    private Item paper = new Item("Paper");
+    private Item candle = new Item("Candle");
+    private Food redApple = new Food("Apple", "a red apple",Edible.EDIBLE ,30);
+    private Food rottenApple = new Food("Poison", "a rotten red apple",Edible.EDIBLE ,-30);
+    private Food starFruit = new Food("Starfruit", "a beautiful golden apple", Edible.EDIBLE,100);
 
 
 
@@ -46,10 +22,12 @@ public class ItemList {
         itemList();
     }
     public void itemList() {
-        listOfItems.add(item1);
-        listOfItems.add(item2);
-        listOfItems.add(item3);
-
+        listOfItems.add(sword);
+        listOfItems.add(paper);
+        listOfItems.add(candle);
+        sword.setEdible(Edible.NON_EDIBLE);
+        paper.setEdible(Edible.NON_EDIBLE);
+        candle.setEdible(Edible.NON_EDIBLE);
     }
     public Item getItem() {
         return item;
@@ -59,28 +37,28 @@ public class ItemList {
         this.item = item;
     }
 
-    public Item getItem1() {
-        return item1;
+    public Item getSword() {
+        return sword;
     }
 
-    public void setItem1(Item item1) {
-        this.item1 = item1;
+    public void setSword(Item sword) {
+        this.sword = sword;
     }
 
-    public Item getItem2() {
-        return item2;
+    public Item getPaper() {
+        return paper;
     }
 
-    public void setItem2(Item item2) {
-        this.item2 = item2;
+    public void setPaper(Item paper) {
+        this.paper = paper;
     }
 
-    public Item getItem3() {
-        return item3;
+    public Item getCandle() {
+        return candle;
     }
 
-    public void setItem3(Item item3) {
-        this.item3 = item3;
+    public void setCandle(Item candle) {
+        this.candle = candle;
     }
 
 
@@ -114,6 +92,37 @@ public class ItemList {
 
     public void setListOfItems(ArrayList<Item> listOfItems) {
         this.listOfItems = listOfItems;
+    }
+
+    public Food getFood() {
+        return food;
+    }
+
+    public void setFood(Food food) {
+        this.food = food;
+    }
+    public Food getRedApple() {
+        return redApple;
+    }
+
+    public void setRedApple(Food redApple) {
+        this.redApple = redApple;
+    }
+
+    public Food getRottenApple() {
+        return rottenApple;
+    }
+
+    public void setRottenApple(Food rottenApple) {
+        this.rottenApple = rottenApple;
+    }
+
+    public Food getStarFruit() {
+        return starFruit;
+    }
+
+    public void setStarFruit(Food starFruit) {
+        this.starFruit = starFruit;
     }
 
 

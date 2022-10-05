@@ -1,7 +1,5 @@
 package org.example;
 
-import java.util.ArrayList;
-
 public class AdventureMechanics {
 
 
@@ -27,7 +25,7 @@ public class AdventureMechanics {
 
 
     public int getCurrentHealth(){
-        return player.getHealth();
+        return player.getTotalHealth();
     }
 
     public Map getMap() {

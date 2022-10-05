@@ -9,9 +9,19 @@ public class Player {
     private Room currentRoom;
     private ArrayList<Item> inventory = new ArrayList<>();
     private boolean wrongDirection;
-    private ItemList iventoryItems = new ItemList();
-    private int health = 100;
+    private ItemList inventoryItems = new ItemList();
+    private int totalHealth = 100;
     private boolean itemExchange = true;
+
+    public boolean isEdibleItem() {
+        return edibleItem;
+    }
+
+    public void setEdibleItem(boolean edibleItem) {
+        this.edibleItem = edibleItem;
+    }
+
+    private boolean edibleItem = true;
 
     public Player(Room currentRoom, ArrayList inventory) {
         this.currentRoom = currentRoom;
@@ -19,20 +29,25 @@ public class Player {
     }
 
     public Player(int health) {
-        this.health = health;
+        this.totalHealth = health;
     }
 
     public Player() {
     }
+
     public void player() {
-        inventory.add(iventoryItems.getItem2());
-        inventory.add(iventoryItems.getItem1());
+        inventory.add(inventoryItems.getPaper());
+        inventory.add(inventoryItems.getSword());
+        inventory.add(inventoryItems.getRedApple());
+        inventory.add(inventoryItems.getStarFruit());
     }
+
     public String lookAround() {
         String lookAround = currentRoom.getDescription();
         return lookAround;
 
     }
+
     public void movement(String direction) {
 
         currentRoom = getCurrentRoom();
@@ -54,26 +69,28 @@ public class Player {
             setCurrentRoom(newRoom);
         }
     }
+
     public void pickUpItem(String userInputs) {
         Item takeItem = null;
-        for(Item item : currentRoom.getItemList()) {
-            if (item.getItemName().equalsIgnoreCase(userInputs)){
+        for (Item item : currentRoom.getItemList()) {
+            if (item.getItemName().equalsIgnoreCase(userInputs)) {
                 takeItem = item;
                 itemExchange = true;
             }
-            }
+        }
         if (takeItem == null) {
             itemExchange = false;
             return;
         }
-            inventory.add(takeItem);
-            currentRoom.getItemList().remove(takeItem);
+        inventory.add(takeItem);
+        currentRoom.getItemList().remove(takeItem);
 
     }
+
     public void dropItem(String userInputs) {
         Item dropItem = null;
-        for(Item item : inventory) {
-            if (item.getItemName().toLowerCase().equalsIgnoreCase(userInputs)){
+        for (Item item : inventory) {
+            if (item.getItemName().toLowerCase().equalsIgnoreCase(userInputs)) {
                 dropItem = item;
                 itemExchange = true;
             }
@@ -85,17 +102,68 @@ public class Player {
         inventory.remove(dropItem);
         currentRoom.getItemList().add(dropItem);
     }
-    public void eatItem(String userInputs){
 
+    public void eatItem(String userInputs) {
+        Item eatItem = null;
+        Food food = null;
+        int healing = 0;
+        for (Item item : inventory) {
+            if (item.getItemName().toLowerCase().equalsIgnoreCase(userInputs)) {
+                eatItem = item;
+                switch (eatItem.getEdible()) {
+                    case EDIBLE:
+                        food = (Food) eatItem;
+                        healing = food.getHealing();
+                        itemExchange = true;
+                        break;
+                    case NON_EDIBLE:
+                        edibleItem = false;
+                        break;
+                    default:
+                        eatItem = null;
+                        break;
+                }
+            }
+        }
+        inventory.remove(food);
+        setTotalHealth(totalHealth + healing);
+
+        if (eatItem == null) {
+            for (Item item : currentRoom.getItemList()) {
+                if (item.getItemName().equalsIgnoreCase(userInputs)) {
+                    eatItem = item;
+                    switch (eatItem.getEdible()) {
+                        case EDIBLE:
+                            food = (Food) eatItem;
+                            healing = food.getHealing();
+                            itemExchange = true;
+                            break;
+                        case NON_EDIBLE:
+                            edibleItem = false;
+                            break;
+                        default:
+                            eatItem = null;
+                            break;
+                    }
+                }
+            }
+            currentRoom.getItemList().remove(food);
+            setTotalHealth(totalHealth + healing);
+        }
+
+
+        if (eatItem == null) {
+            itemExchange = false;
+        }
     }
 
-    public ItemList getIventoryItems() {
+    public ItemList getInventoryItems() {
 
-        return iventoryItems;
+        return inventoryItems;
     }
 
-    public void setIventoryItems(ItemList iventoryItems) {
-        this.iventoryItems = iventoryItems;
+    public void setInventoryItems(ItemList inventoryItems) {
+        this.inventoryItems = inventoryItems;
     }
 
     private ArrayList<Item> inventory() {
@@ -130,12 +198,12 @@ public class Player {
         this.wrongDirection = wrongDirection;
     }
 
-    public int getHealth() {
-        return health;
+    public int getTotalHealth() {
+        return totalHealth;
     }
 
-    public void setHealth(int health) {
-        this.health = health;
+    public void setTotalHealth(int totalHealth) {
+        this.totalHealth = totalHealth;
     }
 
     public boolean isItemExchange() {
@@ -145,7 +213,6 @@ public class Player {
     public void setItemExchange(boolean itemExchange) {
         this.itemExchange = itemExchange;
     }
-
 
 
 }

@@ -47,38 +47,55 @@ public class UserInterface {
             String[] userInputsList = userInputs.split(" ");
             String userCommand = userInputsList[0];
             if (userInputsList.length>1){
-                if (userCommand.equals("drop") || userCommand.equals("d")){
-                    userCommand = userInputsList[1];
-                    am.getPlayer().dropItem(userCommand);
-                    if (am.getPlayer().isItemExchange() == true){
-                        System.out.println("You drop a " + userCommand);
-                    } else {
-                        System.out.println("Cannot find " + userCommand);
+                switch (userCommand) {
+                    case "drop", "d" -> {
+                        userCommand = userInputsList[1];
+                        dropItem(userCommand);
                     }
-                } else if (userCommand.equals("take") || userCommand.equals("t")) {
-                    userCommand = userInputsList[1];
-                    am.getPlayer().pickUpItem(userCommand);
-                    if (am.getPlayer().isItemExchange() == true) {
-                        System.out.println("You take a " + userCommand);
-                    } else {
-                        System.out.println("Cannot find " + userCommand);
+                    case "take", "t" -> {
+                        userCommand = userInputsList[1];
+                        takeItem(userCommand);
                     }
-                } else if (userCommand.equals("eat") || userCommand.equals("e")){
-                    userCommand = userInputsList[1];
-                    am.getPlayer().eatItem(userCommand);
-                    if (am.getPlayer().isItemExchange() == true){
-                        System.out.println("You eat a " + userCommand);
-                    } else {
-                        System.out.println("Cannot find " + userCommand);
+                    case "eat", "e" -> {
+                        userCommand = userInputsList[1];
+                        eat(userCommand);
                     }
-                }else {
-                    userCommand = userInputsList[1];
+                    default -> userCommand = userInputsList[1];
                 }
             }
             gamePlay(userCommand);
         }while(keepRunning);
 
     }
+
+    private void dropItem(String userCommand) {
+        am.getPlayer().dropItem(userCommand);
+        if (am.getPlayer().isItemExchange()) {
+            System.out.println("You drop a " + userCommand);
+        } else {
+            System.out.println("Cannot find " + userCommand);
+        }
+    }
+    public void takeItem(String userCommand){
+        am.getPlayer().pickUpItem(userCommand);
+        if (am.getPlayer().isItemExchange()) {
+            System.out.println("You take a " + userCommand);
+        } else {
+            System.out.println("Cannot find " + userCommand);
+        }
+    }
+    public void eat(String userCommand){
+        am.getPlayer().eatItem(userCommand);
+        if (am.getPlayer().isItemExchange() && !am.getPlayer().isEdibleItem()) {
+            System.out.println("You cannot eat " + userCommand);
+        } else if (am.getPlayer().isItemExchange()) {
+            System.out.println("You eat a " + userCommand);
+            System.out.println("You now have " + am.getPlayer().getTotalHealth());
+        } else {
+            System.out.println("Cannot find " + userCommand);
+        }
+    }
+
     public String currentHealth(){
         int currentHealth = am.getCurrentHealth();
         String currentHealthOutput = "You currently have " + currentHealth + " health";
