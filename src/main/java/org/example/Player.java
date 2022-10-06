@@ -12,15 +12,7 @@ public class Player {
     private ItemList inventoryItems = new ItemList();
     private int totalHealth = 100;
     private boolean itemExchange = true;
-
-    public boolean isEdibleItem() {
-        return edibleItem;
-    }
-
-    public void setEdibleItem(boolean edibleItem) {
-        this.edibleItem = edibleItem;
-    }
-
+    private Weapon currentWeapon;
     private boolean edibleItem = true;
 
     public Player(Room currentRoom, ArrayList inventory) {
@@ -28,6 +20,9 @@ public class Player {
         this.inventory = inventory;
     }
 
+    public Player(Weapon currentWeapon){
+        this.currentWeapon = currentWeapon;
+    }
     public Player(int health) {
         this.totalHealth = health;
     }
@@ -157,6 +152,13 @@ public class Player {
         }
     }
 
+    public void equipWepaon(String userInputs){
+
+    }
+    public void attack(){
+
+    }
+
     public ItemList getInventoryItems() {
 
         return inventoryItems;
@@ -212,6 +214,14 @@ public class Player {
 
     public void setItemExchange(boolean itemExchange) {
         this.itemExchange = itemExchange;
+    }
+
+    public boolean isEdibleItem() {
+        return edibleItem;
+    }
+
+    public void setEdibleItem(boolean edibleItem) {
+        this.edibleItem = edibleItem;
     }
 
 
