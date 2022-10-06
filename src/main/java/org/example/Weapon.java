@@ -1,18 +1,19 @@
 package org.example;
 
 public class Weapon extends Item{
-    int damage;
+
+    private int damage;
     public Weapon(String itemName, String itemDescription, Edible edible, int damage){
         super(itemName,itemDescription,edible);
         this.damage = damage;
     }
 
-    public void attack(){
-
+    public int getDamage() {
+        return damage;
     }
 
-    public void equip(){
-
+    public void setDamage(int damage) {
+        this.damage = damage;
     }
 
 }

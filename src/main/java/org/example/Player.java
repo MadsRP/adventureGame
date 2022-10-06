@@ -11,18 +11,23 @@ public class Player {
     private boolean wrongDirection;
     private ItemList inventoryItems = new ItemList();
     private int totalHealth = 100;
+    private int damage;
     private boolean itemExchange = true;
     private Weapon currentWeapon;
     private boolean edibleItem = true;
+    private RangedWeapon ranged;
+    private int currentAmmo;
+    private boolean rangedWeaponFire = false;
 
     public Player(Room currentRoom, ArrayList inventory) {
         this.currentRoom = currentRoom;
         this.inventory = inventory;
     }
 
-    public Player(Weapon currentWeapon){
+    public Player(Weapon currentWeapon) {
         this.currentWeapon = currentWeapon;
     }
+
     public Player(int health) {
         this.totalHealth = health;
     }
@@ -32,9 +37,8 @@ public class Player {
 
     public void player() {
         inventory.add(inventoryItems.getPaper());
-        inventory.add(inventoryItems.getSword());
-        inventory.add(inventoryItems.getRedApple());
-        inventory.add(inventoryItems.getStarFruit());
+        inventory.add(inventoryItems.getDagger());
+        inventory.add(inventoryItems.getCrossbow());
     }
 
     public String lookAround() {
@@ -122,7 +126,6 @@ public class Player {
         }
         inventory.remove(food);
         setTotalHealth(totalHealth + healing);
-
         if (eatItem == null) {
             for (Item item : currentRoom.getItemList()) {
                 if (item.getItemName().equalsIgnoreCase(userInputs)) {
@@ -145,19 +148,79 @@ public class Player {
             currentRoom.getItemList().remove(food);
             setTotalHealth(totalHealth + healing);
         }
-
-
         if (eatItem == null) {
             itemExchange = false;
         }
     }
 
-    public void equipWepaon(String userInputs){
+    public String inspectItem(String userInputs) {
+        Item inspectItem = null;
+        for (Item item : inventory) {
+            if (item.getItemName().toLowerCase().equalsIgnoreCase(userInputs)) {
+                inspectItem = item;
+            }
+        }
 
+        if (inspectItem == null) {
+            for (Item item : currentRoom.getItemList()) {
+                if (item.getItemName().equalsIgnoreCase(userInputs)) {
+                    inspectItem = item;
+                }
+            }
+        }
+        if(inspectItem ==null)
+        {
+            itemExchange = false;
+            return null;
+        }
+
+        return inspectItem.getItemDescription();
+
+    }
+
+    public void equipWeapon(String userInputs){
+        Item equipItem;
+        Weapon weapon;
+        if (currentWeapon != null)
+        {inventory.add(currentWeapon);
+        }
+        for (Item item : inventory) {
+            if (item.getItemName().toLowerCase().equalsIgnoreCase(userInputs)) {
+                equipItem = item;
+                if (equipItem instanceof Weapon){
+                    weapon = (Weapon) equipItem;
+                    currentWeapon = weapon;
+                    itemExchange = true;
+                }
+            }
+
+            if(currentWeapon ==null)
+            {
+                itemExchange = false;
+            }
+        }
+        inventory.remove(currentWeapon);
     }
     public void attack(){
-
+        if (currentWeapon != null){
+            damage = currentWeapon.getDamage();
+            if (currentWeapon instanceof RangedWeapon) {
+                currentAmmo = ((RangedWeapon) currentWeapon).getAmmo();
+                if (currentAmmo == 0) {
+                    rangedWeaponFire = false;
+                } else {
+                    rangedWeaponFire = true;
+                    RangedWeapon rangedWeapon;
+                    rangedWeapon = (RangedWeapon) currentWeapon;
+                    currentAmmo = rangedWeapon.getAmmo() - 1;
+                    rangedWeapon.setAmmo(currentAmmo);
+                }
+            }
+            } else {
+            itemExchange = false;
+        }
     }
+
 
     public ItemList getInventoryItems() {
 
@@ -223,6 +286,38 @@ public class Player {
     public void setEdibleItem(boolean edibleItem) {
         this.edibleItem = edibleItem;
     }
+    public Weapon getCurrentWeapon() {
+        return currentWeapon;
+    }
+
+    public void setCurrentWeapon(Weapon currentWeapon) {
+        this.currentWeapon = currentWeapon;
+    }
+
+    public int getDamage() {
+        return damage;
+    }
+
+    public void setDamage(int damage) {
+        this.damage = damage;
+    }
+    public boolean isRangedWeaponFire() {
+        return rangedWeaponFire;
+    }
+
+    public void setRangedWeaponFire(boolean rangedWeaponFire) {
+        this.rangedWeaponFire = rangedWeaponFire;
+    }
+
+    public int getCurrentAmmo() {
+        return currentAmmo;
+    }
+
+    public void setCurrentAmmo(int currentAmmo) {
+        this.currentAmmo = currentAmmo;
+    }
+
+
 
 
 }
