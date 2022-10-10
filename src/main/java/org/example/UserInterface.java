@@ -113,13 +113,14 @@ public class UserInterface {
     public void attack(){
         if (am.getPlayer().isItemExchange()){
             am.getPlayer().attack();
-            if (!am.getPlayer().isRangedWeaponFire()){
-                System.out.println("You have no more ammo in " + am.getPlayer().getCurrentWeapon().getItemName());
-                return;
-            } else {
+            if(am.getPlayer().isMeleeWeapon()){
+                System.out.println("You deal " + am.getPlayer().getCurrentWeapon().getDamage() + " damage");
+            }else if (am.getPlayer().isRangedWeaponFire() && !am.getPlayer().isMeleeWeapon()){
                 System.out.println("You have " + am.getPlayer().getCurrentAmmo() + " ammo left.");
+                System.out.println("You deal " + am.getPlayer().getCurrentWeapon().getDamage() + " damage");
+            } else if (!am.getPlayer().isRangedWeaponFire() ){
+                System.out.println("You have no more ammo in " + am.getPlayer().getCurrentWeapon().getItemName());
             }
-            System.out.println("You deal " + am.getPlayer().getCurrentWeapon().getDamage() + " damage");
         } else {
             System.out.println("You do not have a weapon equipped.");
         }

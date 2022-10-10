@@ -1,6 +1,6 @@
 package org.example;
 
-public class Weapon extends Item{
+public abstract class Weapon extends Item{
 
     private int damage;
     public Weapon(String itemName, String itemDescription, Edible edible, int damage){
@@ -15,5 +15,8 @@ public class Weapon extends Item{
     public void setDamage(int damage) {
         this.damage = damage;
     }
+
+    public abstract int getAmmo();
+    public abstract void setAmmo(int ammo);
 
 }

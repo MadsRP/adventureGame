@@ -9,16 +9,16 @@ public class ItemList {
     private ArrayList <Item> listOfItems = new ArrayList<>();
     private Food food = new Food();
     private Item item = new Item();
-    private Item sword = new Item("Sword", "a shiny sword", Edible.NON_EDIBLE);
+    private Item leatherScrap = new Item("Leather", "a piece of leather", Edible.NON_EDIBLE);
     private Item paper = new Item("Paper", "a piece of paper", Edible.NON_EDIBLE);
     private Item candle = new Item("Candle", "a slightly used candle", Edible.NON_EDIBLE);
     private Food redApple = new Food("Apple", "a red apple that heals 30 health",Edible.EDIBLE ,30);
     private Food rottenApple = new Food("Poison", "a rotten red apple",Edible.EDIBLE ,-30);
     private Food starFruit = new Food("Starfruit", "a beautiful golden apple", Edible.EDIBLE,100);
     private MeleeWeapon dagger = new MeleeWeapon("Dagger", "a small dagger that deals 10 damage", Edible.NON_EDIBLE, 10);
-    private MeleeWeapon longSword = new MeleeWeapon("Long Sword", "a long sword, that deals 40 damage", Edible.NON_EDIBLE, 40);
+    private MeleeWeapon scimitar = new MeleeWeapon("Scimitar", "a scimitar, that deals 35 damage", Edible.NON_EDIBLE, 40);
     private RangedWeapon bow = new RangedWeapon("Bow", "a small bow, that deals 10 damage", Edible.NON_EDIBLE, 10, 15);
-    private RangedWeapon crossbow = new RangedWeapon("Crossbow", "a crossbow, that deals 15 damage", Edible.NON_EDIBLE, 15, 1);
+    private RangedWeapon crossbow = new RangedWeapon("Crossbow", "a crossbow, that deals 15 damage", Edible.NON_EDIBLE, 15, 4);
 
 
 
@@ -34,11 +34,11 @@ public class ItemList {
     }
 
     public Item getSword() {
-        return sword;
+        return leatherScrap;
     }
 
     public void setSword(Item sword) {
-        this.sword = sword;
+        this.leatherScrap = sword;
     }
 
     public Item getPaper() {
@@ -129,12 +129,12 @@ public class ItemList {
         this.dagger = dagger;
     }
 
-    public MeleeWeapon getLongSword() {
-        return longSword;
+    public MeleeWeapon getScimitar() {
+        return scimitar;
     }
 
-    public void setLongSword(MeleeWeapon longSword) {
-        this.longSword = longSword;
+    public void setScimitar(MeleeWeapon scimitar) {
+        this.scimitar = scimitar;
     }
 
     public RangedWeapon getBow() {

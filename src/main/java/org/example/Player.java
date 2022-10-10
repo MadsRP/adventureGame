@@ -18,6 +18,14 @@ public class Player {
     private RangedWeapon ranged;
     private int currentAmmo;
     private boolean rangedWeaponFire = false;
+    private Item eatItem;
+    private Food food;
+
+    public boolean isMeleeWeapon() {
+        return meleeWeapon;
+    }
+
+    private boolean meleeWeapon;
 
     public Player(Room currentRoom, ArrayList inventory) {
         this.currentRoom = currentRoom;
@@ -102,6 +110,9 @@ public class Player {
         currentRoom.getItemList().add(dropItem);
     }
 
+    public void eat() {
+    }
+
     public void eatItem(String userInputs) {
         Item eatItem = null;
         Food food = null;
@@ -121,9 +132,10 @@ public class Player {
                     default:
                         eatItem = null;
                         break;
+
+                }
                 }
             }
-        }
         inventory.remove(food);
         setTotalHealth(totalHealth + healing);
         if (eatItem == null) {
@@ -142,12 +154,13 @@ public class Player {
                         default:
                             eatItem = null;
                             break;
+
+                    }
                     }
                 }
             }
             currentRoom.getItemList().remove(food);
             setTotalHealth(totalHealth + healing);
-        }
         if (eatItem == null) {
             itemExchange = false;
         }
@@ -204,16 +217,19 @@ public class Player {
     public void attack(){
         if (currentWeapon != null){
             damage = currentWeapon.getDamage();
-            if (currentWeapon instanceof RangedWeapon) {
-                currentAmmo = ((RangedWeapon) currentWeapon).getAmmo();
-                if (currentAmmo == 0) {
+            if (currentWeapon.getAmmo() == -1){
+                meleeWeapon = true;
+                return;
+            }
+            if (currentWeapon.getAmmo() >=0){
+                currentAmmo = currentWeapon.getAmmo();
+                if (currentAmmo == 0){
                     rangedWeaponFire = false;
-                } else {
+                }
+                else{
                     rangedWeaponFire = true;
-                    RangedWeapon rangedWeapon;
-                    rangedWeapon = (RangedWeapon) currentWeapon;
-                    currentAmmo = rangedWeapon.getAmmo() - 1;
-                    rangedWeapon.setAmmo(currentAmmo);
+                    currentAmmo = currentWeapon.getAmmo()-1;
+                    currentWeapon.setAmmo(currentAmmo);
                 }
             }
             } else {
