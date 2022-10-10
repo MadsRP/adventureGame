@@ -12,9 +12,6 @@ public class Food extends Item{
     }
     public Food(String itemName){
     }
-
-
-
     public int getHealing() {
         return healing;
     }

@@ -1,18 +1,19 @@
 package org.example;
 
 public class MeleeWeapon extends Weapon{
-    private int ammo = -1;
+    public MeleeWeapon(String itemName, String itemDescription, Edible edible, int damage, WeaponType weaponType) {
+        super(itemName, itemDescription, edible, damage, weaponType);
+    }
 
-    public MeleeWeapon(String itemName, String itemDescription, Edible edible, int damage) {
-        super(itemName, itemDescription, edible, damage);
+    @Override
+    public void setAmmo(int ammo) {
+
     }
 
     @Override
     public int getAmmo() {
-        return -1;
+
+        return 0;
     }
 
-    public void setAmmo(int ammo){
-        this.ammo = ammo;
-    }
 }

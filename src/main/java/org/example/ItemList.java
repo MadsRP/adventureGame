@@ -15,10 +15,10 @@ public class ItemList {
     private Food redApple = new Food("Apple", "a red apple that heals 30 health",Edible.EDIBLE ,30);
     private Food rottenApple = new Food("Poison", "a rotten red apple",Edible.EDIBLE ,-30);
     private Food starFruit = new Food("Starfruit", "a beautiful golden apple", Edible.EDIBLE,100);
-    private MeleeWeapon dagger = new MeleeWeapon("Dagger", "a small dagger that deals 10 damage", Edible.NON_EDIBLE, 10);
-    private MeleeWeapon scimitar = new MeleeWeapon("Scimitar", "a scimitar, that deals 35 damage", Edible.NON_EDIBLE, 40);
-    private RangedWeapon bow = new RangedWeapon("Bow", "a small bow, that deals 10 damage", Edible.NON_EDIBLE, 10, 15);
-    private RangedWeapon crossbow = new RangedWeapon("Crossbow", "a crossbow, that deals 15 damage", Edible.NON_EDIBLE, 15, 4);
+    private MeleeWeapon dagger = new MeleeWeapon("Dagger", "a small dagger that deals 10 damage", Edible.NON_EDIBLE, 10, WeaponType.MELEE_WEAPON);
+    private MeleeWeapon scimitar = new MeleeWeapon("Scimitar", "a scimitar, that deals 35 damage", Edible.NON_EDIBLE, 40, WeaponType.MELEE_WEAPON);
+    private RangedWeapon bow = new RangedWeapon("Bow", "a small bow, that deals 10 damage", Edible.NON_EDIBLE, 10, WeaponType.RANGED_WEAPON, 5);
+    private RangedWeapon crossbow = new RangedWeapon("Crossbow", "a crossbow, that deals 15 damage", Edible.NON_EDIBLE, 15, WeaponType.RANGED_WEAPON, 5);
 
 
 

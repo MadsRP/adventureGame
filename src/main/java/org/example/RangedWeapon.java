@@ -3,11 +3,12 @@ package org.example;
 public class RangedWeapon extends Weapon{
 
     private int ammo;
-    public RangedWeapon(String itemName, String itemDescription, Edible edible, int damage, int ammo) {
-        super(itemName, itemDescription, edible, damage);
-        this.ammo= ammo;
-    }
 
+    public RangedWeapon(String itemName, String itemDescription, Edible edible, int damage, WeaponType weaponType, int ammo) {
+        super(itemName, itemDescription, edible, damage, weaponType);
+        this.ammo = ammo;
+    }
+    @Override
     public int getAmmo() {
         return ammo;
     }
