@@ -220,6 +220,9 @@ public class Player {
             itemExchange = false;
         }
     }
+    public void getHit(){
+
+    }
 
 
     public ItemList getInventoryItems() {

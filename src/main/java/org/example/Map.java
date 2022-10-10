@@ -88,37 +88,6 @@ public class Map {
         room9.setNorthConnectingRoom(room6);
         room9.setItemList(itemListRoom9);
         itemListRoom9.add(itemList.getPaper());
-//
-//        for(int randomNumber = new Random().nextInt(2); randomNumber>0;randomNumber--) {
-//            itemListRoom1.add(itemList.randomItem());
-//        }
-//
-//        for(int randomNumber = new Random().nextInt(4); randomNumber>0;randomNumber--) {
-//            itemListRoom2.add(itemList.randomItem());
-//        }
-//
-//        for(int randomNumber = new Random().nextInt(2); randomNumber>0;randomNumber--) {
-//            itemListRoom3.add(itemList.randomItem());
-//        }
-//        for(int randomNumber = new Random().nextInt(3); randomNumber>0;randomNumber--) {
-//            itemListRoom4.add(itemList.randomItem());
-//        }
-//        for(int randomNumber = new Random().nextInt(3); randomNumber>0;randomNumber--) {
-//            itemListRoom5.add(itemList.randomItem());
-//        }
-//        for(int randomNumber = new Random().nextInt(2); randomNumber>0;randomNumber--) {
-//            itemListRoom6.add(itemList.randomItem());
-//        }
-//        for(int randomNumber = new Random().nextInt(3); randomNumber>0;randomNumber--) {
-//            itemListRoom7.add(itemList.randomItem());
-//        }
-//        for(int randomNumber = new Random().nextInt(4); randomNumber>0;randomNumber--) {
-//            itemListRoom8.add(itemList.randomItem());
-//        }
-//        for(int randomNumber = new Random().nextInt(2); randomNumber>0;randomNumber--) {
-//            itemListRoom9.add(itemList.randomItem());
-//        }
-
     }
 
 
