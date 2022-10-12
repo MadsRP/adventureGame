@@ -7,12 +7,10 @@ public class MeleeWeapon extends Weapon{
 
     @Override
     public void setAmmo(int ammo) {
-
     }
 
     @Override
     public int getAmmo() {
-
         return 0;
     }
 

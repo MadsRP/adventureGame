@@ -33,42 +33,11 @@ public class Item {
     public String getItemName() {
         return itemName;
     }
-
-    public void setItemName(String itemName) {
-        this.itemName = itemName;
-    }
     public String getItemDescription() {
         return itemDescription;
     }
-
-    public void setItemDescription(String itemDescription) {
-        this.itemDescription = itemDescription;
-    }
-
-
-    public Room getCurrentRoom() {
-        return currentRoom;
-    }
-
-    public void setCurrentRoom(Room currentRoom) {
-        this.currentRoom = currentRoom;
-    }
-    public Room getRoom() {
-        return room;
-    }
-
-    public void setRoom(Room room) {
-        this.room = room;
-    }
-
     public Edible getEdible() {
         return edible;
     }
-
-    public void setEdible(Edible edible) {
-        this.edible = edible;
-    }
-
-
 
 }

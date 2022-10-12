@@ -1,10 +1,29 @@
 package org.example;
 
 public class Monster {
+
     private String type;
+    private Weapon weapon;
     private String description;
     private int health;
-    private Weapon weapon;
+
+    public Monster(){
+    }
+
+    public void attack(Monster monster, Player player){
+        player.setHealth(player.getHealth()-weapon.getDamage());
+    }
+
+
+
+    public Monster (Weapon weapon){
+        this.weapon = weapon;
+    }
+    public Monster (String type, String description, int health){
+        this.type = type;
+        this.description = description;
+        this.health = health;
+    }
 
     public Monster (String type, String description, int health, Weapon weapon){
         this.type = type;
@@ -13,15 +32,28 @@ public class Monster {
         this.weapon = weapon;
     }
 
-    public void attack(){
 
+    public String getDescription() {
+        return description;
     }
-    public void getHit(){
-
+    public String getType() {
+        return type;
     }
 
-    public void dead(){
+    public int getHealth() {
+        return health;
+    }
 
+    public Weapon getWeapon() {
+        return weapon;
+    }
+
+    public void setWeapon(Weapon weapon) {
+        this.weapon = weapon;
+    }
+
+    public void setHealth(int health) {
+        this.health = health;
     }
 
 }

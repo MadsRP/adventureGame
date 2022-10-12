@@ -9,8 +9,8 @@ public class Player {
     private Room currentRoom;
     private ArrayList<Item> inventory = new ArrayList<>();
     private boolean wrongDirection;
-    private ItemList inventoryItems = new ItemList();
-    private int totalHealth = 100;
+    private itemList inventoryItems = new itemList();
+    private int health = 100;
     private int damage;
     private boolean itemExchange = true;
     private Weapon currentWeapon;
@@ -21,12 +21,15 @@ public class Player {
     private Item eatItem;
     private Food food;
     private int healing;
+    private boolean meleeWeapon;
 
-    public boolean isMeleeWeapon() {
-        return meleeWeapon;
+    public String getDirection() {
+        return direction;
     }
 
-    private boolean meleeWeapon;
+    private String direction;
+
+
 
     public Player(Room currentRoom, ArrayList inventory) {
         this.currentRoom = currentRoom;
@@ -38,7 +41,7 @@ public class Player {
     }
 
     public Player(int health) {
-        this.totalHealth = health;
+        this.health = health;
     }
 
     public Player() {
@@ -53,7 +56,6 @@ public class Player {
     public String lookAround() {
         String lookAround = currentRoom.getDescription();
         return lookAround;
-
     }
 
     public void movement(String direction) {
@@ -63,12 +65,16 @@ public class Player {
 
         if (direction.charAt(0) == 'n') {
             newRoom = currentRoom.getNorthConnectingRoom();
+            direction = "north";
         } else if (direction.charAt(0) == 's') {
             newRoom = currentRoom.getSouthConnectingRoom();
+            direction = "south";
         } else if (direction.charAt(0) == 'e') {
             newRoom = currentRoom.getEastConnectingRoom();
+            direction = "east";
         } else if (direction.charAt(0) == 'w') {
             newRoom = currentRoom.getWestConnectingRoom();
+            direction = "west";
         }
 
         if (newRoom == null) {
@@ -77,6 +83,7 @@ public class Player {
             setCurrentRoom(newRoom);
         }
     }
+
 
     public void pickUpItem(String userInputs) {
         Item takeItem = null;
@@ -135,7 +142,7 @@ public class Player {
             }
         }
         inventory.remove(food);
-        setTotalHealth(totalHealth + healing);
+        setHealth(health + healing);
         if (eatItem == null) {
             for (Item item : currentRoom.getItemList()) {
                 if (item.getItemName().equalsIgnoreCase(userInputs)) {
@@ -158,7 +165,7 @@ public class Player {
             }
         }
         currentRoom.getItemList().remove(food);
-        setTotalHealth(totalHealth + healing);
+        setHealth(health + healing);
         if (eatItem == null) {
             itemExchange = false;
         }
@@ -211,7 +218,7 @@ public class Player {
         inventory.remove(currentWeapon);
     }
 
-    public void attack() {
+    public void useWeapon() {
         if (currentWeapon != null) {
             damage = currentWeapon.getDamage();
             switch (currentWeapon.getWeaponType()) {
@@ -233,28 +240,12 @@ public class Player {
         }
     }
 
-    public void getHit() {
-    }
-
-
-    public ItemList getInventoryItems() {
-        return inventoryItems;
-    }
-
-    public void setInventoryItems(ItemList inventoryItems) {
-        this.inventoryItems = inventoryItems;
-    }
-
-    private ArrayList<Item> inventory() {
-        return inventory;
+    public void attack(Monster monster){
+        monster.setHealth(monster.getHealth()-currentWeapon.getDamage());
     }
 
     public Player(Room currentRoom) {
         this.currentRoom = currentRoom;
-    }
-
-    public void setInventory(ArrayList<Item> inventory) {
-        this.inventory = inventory;
     }
 
     public ArrayList<Item> getInventory() {
@@ -273,64 +264,36 @@ public class Player {
         return wrongDirection;
     }
 
-    public void setWrongDirection(boolean wrongDirection) {
-        this.wrongDirection = wrongDirection;
+    public int getHealth() {
+        return health;
     }
 
-    public int getTotalHealth() {
-        return totalHealth;
-    }
-
-    public void setTotalHealth(int totalHealth) {
-        this.totalHealth = totalHealth;
+    public void setHealth(int health) {
+        this.health = health;
     }
 
     public boolean isItemExchange() {
         return itemExchange;
     }
 
-    public void setItemExchange(boolean itemExchange) {
-        this.itemExchange = itemExchange;
-    }
-
     public boolean isEdibleItem() {
         return edibleItem;
-    }
-
-    public void setEdibleItem(boolean edibleItem) {
-        this.edibleItem = edibleItem;
     }
 
     public Weapon getCurrentWeapon() {
         return currentWeapon;
     }
 
-    public void setCurrentWeapon(Weapon currentWeapon) {
-        this.currentWeapon = currentWeapon;
-    }
-
-    public int getDamage() {
-        return damage;
-    }
-
-    public void setDamage(int damage) {
-        this.damage = damage;
-    }
-
     public boolean isRangedWeaponFire() {
         return rangedWeaponFire;
-    }
-
-    public void setRangedWeaponFire(boolean rangedWeaponFire) {
-        this.rangedWeaponFire = rangedWeaponFire;
     }
 
     public int getCurrentAmmo() {
         return currentAmmo;
     }
 
-    public void setCurrentAmmo(int currentAmmo) {
-        this.currentAmmo = currentAmmo;
+    public boolean isMeleeWeapon() {
+        return meleeWeapon;
     }
 
 

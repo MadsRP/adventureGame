@@ -1,6 +1,5 @@
 package org.example;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 public class Room {
@@ -15,14 +14,24 @@ public class Room {
     private String descriptionShort;
     private Item item;
     private ArrayList<Item> itemList = new ArrayList<>();
+    public ArrayList<Monster> getMonsterList() {
+        return monsterList;
+    }
+
+    public void setMonsterList(ArrayList<Monster> monsterList) {
+        this.monsterList = monsterList;
+    }
+
+    private ArrayList<Monster> monsterList = new ArrayList<>();
 
 
-    public Room(Room northConnectingRoom, Room southConnectingRoom, Room eastConnectingRoom, Room westConnectingRoom, ArrayList itemList) {
+    public Room(Room northConnectingRoom, Room southConnectingRoom, Room eastConnectingRoom, Room westConnectingRoom, ArrayList itemList, ArrayList monsterList) {
         this.northConnectingRoom = northConnectingRoom;
         this.southConnectingRoom = southConnectingRoom;
         this.eastConnectingRoom = eastConnectingRoom;
         this.westConnectingRoom = westConnectingRoom;
         this.itemList = itemList;
+        this.monsterList = monsterList;
     }
 
     public Room(Room northConnectingRoom, Room southConnectingRoom, Room eastConnectingRoom, Room westConnectingRoom) {
@@ -57,10 +66,6 @@ public class Room {
         return descriptionShort;
     }
 
-    public void setDescriptionShort(String descriptionShort) {
-        this.descriptionShort = descriptionShort;
-    }
-
     public Room getNorthConnectingRoom() {
         return northConnectingRoom;
     }
@@ -93,36 +98,12 @@ public class Room {
         this.westConnectingRoom = westConnectingRoom;
     }
 
-    public Room getCurrentRoom() {
-        return currentRoom;
-    }
-
-    public void setCurrentRoom(Room currentRoom) {
-        this.currentRoom = currentRoom;
-    }
-
     public String getDescription() {
         return description;
     }
 
-    public void setDescription(String description) {
-        this.description = description;
-    }
-
     public int getRoomNumber() {
         return roomNumber;
-    }
-
-    public void setRoomNumber(int roomNumber) {
-        this.roomNumber = roomNumber;
-    }
-
-    public Item getItem() {
-        return item;
-    }
-
-    public void setItem(Item item) {
-        this.item = item;
     }
 
     public ArrayList<Item> getItemList() {

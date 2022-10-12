@@ -16,8 +16,4 @@ public class Food extends Item{
         return healing;
     }
 
-    public void setHealing(int healing) {
-        this.healing = healing;
-    }
-
 }

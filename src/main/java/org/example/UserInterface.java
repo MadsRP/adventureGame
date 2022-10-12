@@ -7,15 +7,13 @@ public class UserInterface {
     private AdventureMechanics am = new AdventureMechanics();
     private boolean keepRunning = true;
     private Scanner input = new Scanner(System.in);
-    private String userInputs;
-    private String[] userInputsList;
-    private String userCommand;
 
     public void menuText() {
-
+        System.out.println("Welcome to the great game of Adventure!");
+        System.out.println("Please use the terminal to type your desired action below:");
+        System.out.println("(If it is your first time playing, use help to see commands, once you start the game.)");
         System.out.println("Start the game: start");
         System.out.println("Exit the game: exit");
-        System.out.println("Help with the game: help");
     }
     public void start() {
         String menuInput = input.nextLine().toLowerCase();
@@ -27,15 +25,15 @@ public class UserInterface {
                 System.out.println("Quitting game.");
                 System.exit(0);
                 break;
-            case "help":
-                menuText();
-                break;
-
+            default:
+                System.out.println("You did not input a correct command. Please input from the list above.");
+                start();
         }
     }
     public String gameIntro() {
-        String gameIntro = "You are lost in the woods, and wander around lost, looking for anything remotely looking like civilisation. " +
-                "You stumble upon a " + am.getPlayer().getCurrentRoom().getDescription().toLowerCase();
+        String gameIntro = "You are lost in the woods, and wander around, looking for anything remotely looking like civilisation. " +
+                "\nYou stumble upon " + am.getPlayer().getCurrentRoom().getDescription().toLowerCase() +
+                "\nIn the clearing you see a zombie aimlessly walking around.";
         System.out.println(gameIntro);
         return gameIntro;
     }
@@ -68,14 +66,12 @@ public class UserInterface {
                         userCommand = userInputsList[1];
                         equip(userCommand);
                     }
-                    default -> userCommand = userInputsList[1];
                 }
             }
             gamePlay(userCommand);
         }while(keepRunning);
 
     }
-
     public void gamePlay(String userInputs) {
         switch (userInputs){
             case "n","north",
@@ -98,10 +94,6 @@ public class UserInterface {
                     "inventory":
                 inventory();
                 break;
-            case "health",
-                    "hp":
-                System.out.println(currentHealth());
-                break;
             case "exit":
                 System.out.println("Quitting game.");
                 System.exit(0);
@@ -109,28 +101,51 @@ public class UserInterface {
 
         }
     }
-
     public void attack(){
+        int currentDamage = 0;
+        if (am.getPlayer().getCurrentWeapon() == null){
+            System.out.println("You do not have a weapon equipped");
+            return;
+        }
         if (am.getPlayer().isItemExchange()){
-            am.getPlayer().attack();
+            am.getPlayer().useWeapon();
             if(am.getPlayer().isMeleeWeapon()){
-                System.out.println("You deal " + am.getPlayer().getCurrentWeapon().getDamage() + " damage");
+                currentDamage = am.getPlayer().getCurrentWeapon().getDamage();
             }else if (am.getPlayer().isRangedWeaponFire() && !am.getPlayer().isMeleeWeapon()){
                 System.out.println("You have " + am.getPlayer().getCurrentAmmo() + " ammo left.");
-                System.out.println("You deal " + am.getPlayer().getCurrentWeapon().getDamage() + " damage");
+                currentDamage = am.getPlayer().getCurrentWeapon().getDamage();
             } else if (!am.getPlayer().isRangedWeaponFire() ){
                 System.out.println("You have no more ammo in " + am.getPlayer().getCurrentWeapon().getItemName());
             }
         } else {
             System.out.println("You do not have a weapon equipped.");
         }
+        Monster currentMonster = null;
+        for (Monster monster : am.getPlayer().getCurrentRoom().getMonsterList()){
+            am.attackMonster(monster);
+            System.out.println("You deal " + currentDamage + " damage to the " + monster.getType());
+            System.out.println("The " + monster.getType()+  " has " + monster.getHealth() + " health left.");
+            currentMonster = monster;
+        }
+        if (am.isMonsterDead(currentMonster)) {
+            System.out.println("The " + currentMonster.getType().toLowerCase() + " dies and drops a " + currentMonster.getWeapon().getItemName().toLowerCase());
+        } else {
+            am.attackPlayer(currentMonster, am.getPlayer());
+            System.out.println("You get attacked by " + currentMonster.getType() + " for " + currentMonster.getWeapon().getDamage() + " damage");
+            System.out.println("You have " + am.getPlayer().getHealth() + " health left.");
+        }
+        if (am.isPlayerDead(am.getPlayer()))
+        {
+            keepRunning = false;
+            System.out.println("You have died.\n");
 
+        }
     }
     public void inventory(){
         if (am.getPlayer().getInventory().size() == 0){
             System.out.println("You have no items");
         }
-        System.out.println("You have: " + am.getPlayer().getTotalHealth() + " health");
+        System.out.println("You have: " + am.getPlayer().getHealth() + " health");
         if (am.getPlayer().getCurrentWeapon() != null) {
             System.out.println("You have a " + am.getPlayer().getCurrentWeapon().getItemName().toLowerCase() + " equipped");
             if (am.getPlayer().isRangedWeaponFire()){
@@ -174,7 +189,7 @@ public class UserInterface {
             System.out.println("You cannot eat " + userCommand);
         } else if (am.getPlayer().isItemExchange()) {
             System.out.println("You eat a " + userCommand);
-            System.out.println("You now have " + am.getPlayer().getTotalHealth());
+            System.out.println("You now have " + am.getPlayer().getHealth());
         } else {
             System.out.println("Cannot find " + userCommand);
         }
@@ -187,19 +202,30 @@ public class UserInterface {
             System.out.println("Cannot find " + userCommand);
         }
     }
-    public String currentHealth(){
-        int currentHealth = am.getCurrentHealth();
-        String currentHealthOutput = "You currently have " + currentHealth + " health";
-        return currentHealthOutput;
-    }
     private void helpText() {
         System.out.println("In this game you move around by writing 'go' and whichever cardinal direction you would like to go." +
-                "\neg. 'go north'."+
-                "\nYou can look around the room you are in by writing 'look'." +
-        "\nYou can exit the game by writing 'exit'.");
+                        "\neg. 'go north'."+
+                        "\nYou can check your inventory and health by typing 'inv' or 'inventory'."+
+                        "\nIf there is a monster in the room you are in, you may want to attack it, which you do by writing 'Attack'."+
+                        "\nBefore you attack however, you should equip a weapon. You do so by writing 'equip *weaponname*'."+
+                        "\nAround the map there will be items in the rooms."+
+                        "\nYou can pick up items from rooms or drop items from your inventory by typing either 'take *itemname*' or 'drop *itemname'."+
+                        "\nIf you lose health, you can regain health by eating food. You do so by typing 'eat *foodname'."+
+                        "\nIf you would like to look at an items description, you can type 'inspect *itemname*' to see an items description."+
+                        "\nYou can look around the room you are in by writing 'look'." +
+                        "\nYou can exit the game by writing 'exit'.");
     }
     public void lookAround(){
         System.out.println("You are in a " + am.getPlayer().lookAround());
+
+        if(am.getPlayer().getCurrentRoom().getMonsterList().size() == 0 ){
+            System.out.println("There are no monsters in the room");
+        } else {
+            for (Monster monster : am.getPlayer().getCurrentRoom().getMonsterList()){
+                System.out.println("There is a " + monster.getType() + " in the room");
+            }
+        }
+
         if(am.getPlayer().getCurrentRoom().getItemList().size() == 0){
             System.out.println("You find no items in " + am.getPlayer().getCurrentRoom().getDescriptionShort());
         } else {
@@ -213,25 +239,40 @@ public class UserInterface {
         }
     }
     public void alreadyVisited() {
+        Monster currentMonster = null;
         if (!am.alreadyVisited()) {
             System.out.println("You are by " + am.getPlayer().getCurrentRoom().getDescription().toLowerCase());
-        } else if (am.alreadyVisited()) {
-            System.out.println("You are by " + am.getPlayer().getCurrentRoom().getDescriptionShort().toLowerCase());
+            for (Monster monster : am.getPlayer().getCurrentRoom().getMonsterList()) {
+                currentMonster = monster;
+            }
+            if (currentMonster==null){
+                System.out.println("There are no monsters");
+            }else {
+                System.out.println("You find a " + currentMonster.getType().toLowerCase() + " in the room.");
+            }
+        }else if (am.alreadyVisited()) {
+                System.out.println("You are back by " + am.getPlayer().getCurrentRoom().getDescriptionShort().toLowerCase());
+            }
         }
-    }
+
+
     public void movement(String direction){
         am.playerMovement(direction);
         am.getPlayer().getCurrentRoom();
-        alreadyVisited();
         if (am.getPlayer().isWrongDirection()){
-            System.out.println("You try going " + direction + " but it's not possible.");
+            switch (direction){
+                case "n": direction = "north"; break;
+                case "s": direction = "south"; break;
+                case "e": direction = "east"; break;
+                case "w": direction = "west"; break;
+            }
         }
+        System.out.println("You try going " + direction + " but there is no path.");
+        alreadyVisited();
+
     }
     public AdventureMechanics getAm() {
         return am;
-    }
-    public void setAm(AdventureMechanics am) {
-        this.am = am;
     }
 
 }

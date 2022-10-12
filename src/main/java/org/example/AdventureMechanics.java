@@ -4,11 +4,37 @@ public class AdventureMechanics {
 
 
     private Map map = new Map();
-    private ItemList itemList = new ItemList();
+    private org.example.itemList itemList = new itemList();
     private Player player = new Player(map.getFirstRoom());
 
     public void playerMovement(String direction){
         player.movement(direction);
+    }
+
+    public void attackMonster(Monster monster){
+        player.attack(monster);
+    }
+    public void attackPlayer(Monster monster, Player player){
+        monster.attack(monster, player);
+    }
+
+
+    public boolean isMonsterDead(Monster currentMonster){
+        Boolean isMonsterDead = false;
+        if (currentMonster.getHealth()<=0){
+            player.getCurrentRoom().getMonsterList().remove(currentMonster);
+            player.getCurrentRoom().getItemList().add(currentMonster.getWeapon());
+            isMonsterDead = true;
+        }
+        return isMonsterDead;
+    }
+
+    public boolean isPlayerDead(Player player){
+        Boolean isPlayerDead = false;
+        if (player.getHealth()<=0){
+            isPlayerDead = true;
+        }
+        return isPlayerDead;
     }
 
     public boolean alreadyVisited() {
@@ -25,31 +51,15 @@ public class AdventureMechanics {
 
 
     public int getCurrentHealth(){
-        return player.getTotalHealth();
+        return player.getHealth();
     }
 
     public Map getMap() {
         return map;
     }
 
-    public void setMap(Map map) {
-        this.map = map;
-    }
-
     public Player getPlayer() {
         return player;
-    }
-
-    public void setPlayer(Player player) {
-        this.player = player;
-    }
-
-    public ItemList getItemList() {
-        return itemList;
-    }
-
-    public void setItemList(ItemList itemList) {
-        this.itemList = itemList;
     }
 
 }
