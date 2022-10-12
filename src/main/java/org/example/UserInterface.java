@@ -66,6 +66,7 @@ public class UserInterface {
                         userCommand = userInputsList[1];
                         equip(userCommand);
                     }
+                    default -> userCommand = userInputsList[1];
                 }
             }
             gamePlay(userCommand);
@@ -256,18 +257,27 @@ public class UserInterface {
         }
 
 
-    public void movement(String direction){
+    public void movement(String direction) {
         am.playerMovement(direction);
-        am.getPlayer().getCurrentRoom();
         if (am.getPlayer().isWrongDirection()){
-            switch (direction){
-                case "n": direction = "north"; break;
-                case "s": direction = "south"; break;
-                case "e": direction = "east"; break;
-                case "w": direction = "west"; break;
+            switch (direction) {
+                case "n":
+                    direction = "north";
+                    break;
+                case "s":
+                    direction = "south";
+                    break;
+                case "e":
+                    direction = "east";
+                    break;
+                case "w":
+                    direction = "west";
+                    break;
+
             }
+            System.out.println("You try going " + direction + " but there is no path.");
         }
-        System.out.println("You try going " + direction + " but there is no path.");
+        am.getPlayer().getCurrentRoom();
         alreadyVisited();
 
     }

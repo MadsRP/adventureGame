@@ -65,21 +65,18 @@ public class Player {
 
         if (direction.charAt(0) == 'n') {
             newRoom = currentRoom.getNorthConnectingRoom();
-            direction = "north";
         } else if (direction.charAt(0) == 's') {
             newRoom = currentRoom.getSouthConnectingRoom();
-            direction = "south";
         } else if (direction.charAt(0) == 'e') {
             newRoom = currentRoom.getEastConnectingRoom();
-            direction = "east";
         } else if (direction.charAt(0) == 'w') {
             newRoom = currentRoom.getWestConnectingRoom();
-            direction = "west";
         }
 
         if (newRoom == null) {
             wrongDirection = true;
         } else {
+            wrongDirection = false;
             setCurrentRoom(newRoom);
         }
     }
