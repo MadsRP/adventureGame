@@ -4,12 +4,12 @@ import java.util.Scanner;
 
 public class UserInterface {
 
-    private AdventureMechanics am = new AdventureMechanics();
     private boolean keepRunning = true;
+    private AdventureMechanics am = new AdventureMechanics();
     private Scanner input = new Scanner(System.in);
 
     public void menuText() {
-        System.out.println("Welcome to the great game of Adventure!");
+        System.out.println("Welcome to Life in Adventure!");
         System.out.println("Please use the terminal to type your desired action below:");
         System.out.println("(If it is your first time playing, use help to see commands, once you start the game.)");
         System.out.println("Start the game: start");
@@ -105,7 +105,7 @@ public class UserInterface {
     public void attack(){
         int currentDamage = 0;
         if (am.getPlayer().getCurrentWeapon() == null){
-            System.out.println("You do not have a weapon equipped");
+            System.out.println("You do not have a weapon equipped.");
             return;
         }
         if (am.getPlayer().isItemExchange()){
@@ -124,15 +124,15 @@ public class UserInterface {
         Monster currentMonster = null;
         for (Monster monster : am.getPlayer().getCurrentRoom().getMonsterList()){
             am.attackMonster(monster);
-            System.out.println("You deal " + currentDamage + " damage to the " + monster.getType());
-            System.out.println("The " + monster.getType()+  " has " + monster.getHealth() + " health left.");
+            System.out.println("You deal " + currentDamage + " damage to the " + monster.getType().toLowerCase() + ".");
+            System.out.println("The " + monster.getType().toLowerCase() +  " has " + monster.getHealth() + " health left.");
             currentMonster = monster;
         }
         if (am.isMonsterDead(currentMonster)) {
-            System.out.println("The " + currentMonster.getType().toLowerCase() + " dies and drops a " + currentMonster.getWeapon().getItemName().toLowerCase());
+            System.out.println("The " + currentMonster.getType().toLowerCase() + " dies and drops a " + currentMonster.getWeapon().getItemName().toLowerCase()+ ".");
         } else {
             am.attackPlayer(currentMonster, am.getPlayer());
-            System.out.println("You get attacked by " + currentMonster.getType() + " for " + currentMonster.getWeapon().getDamage() + " damage");
+            System.out.println("You get attacked by the " + currentMonster.getType().toLowerCase() + " for " + currentMonster.getWeapon().getDamage() + " damage.");
             System.out.println("You have " + am.getPlayer().getHealth() + " health left.");
         }
         if (am.isPlayerDead(am.getPlayer()))
@@ -144,16 +144,16 @@ public class UserInterface {
     }
     public void inventory(){
         if (am.getPlayer().getInventory().size() == 0){
-            System.out.println("You have no items");
+            System.out.println("You have no items.");
         }
-        System.out.println("You have: " + am.getPlayer().getHealth() + " health");
+        System.out.println("You have: " + am.getPlayer().getHealth() + " health.");
         if (am.getPlayer().getCurrentWeapon() != null) {
-            System.out.println("You have a " + am.getPlayer().getCurrentWeapon().getItemName().toLowerCase() + " equipped");
+            System.out.println("You have a " + am.getPlayer().getCurrentWeapon().getItemName().toLowerCase() + " equipped.");
             if (am.getPlayer().isRangedWeaponFire()){
-                System.out.println("You have " + am.getPlayer().getCurrentAmmo() + " ammo left");
+                System.out.println("You have " + am.getPlayer().getCurrentAmmo() + " ammo left.");
             }
         } else {
-            System.out.println("You have no weapons equipped");
+            System.out.println("You have no weapons equipped.");
         }
         for (Item items : am.getPlayer().getInventory()){
             System.out.println("inventory: " + items.getItemName());
@@ -163,44 +163,44 @@ public class UserInterface {
     private void equip(String userCommand) {
         am.getPlayer().equipWeapon(userCommand);
         if (am.getPlayer().isItemExchange()) {
-            System.out.println("You equip a " + userCommand);
+            System.out.println("You equip a " + userCommand + ".");
         } else  if (!am.getPlayer().isItemExchange()){
-            System.out.println("Cannot equip " + userCommand);
+            System.out.println("Cannot equip " + userCommand+".");
         }
     }
     private void dropItem(String userCommand) {
         am.getPlayer().dropItem(userCommand);
         if (am.getPlayer().isItemExchange()) {
-            System.out.println("You drop a " + userCommand);
+            System.out.println("You drop a " + userCommand +".");
         } else {
-            System.out.println("Cannot find " + userCommand);
+            System.out.println("Cannot find " + userCommand+".");
         }
     }
     public void takeItem(String userCommand){
         am.getPlayer().pickUpItem(userCommand);
         if (am.getPlayer().isItemExchange()) {
-            System.out.println("You take a " + userCommand + ", it is " + am.getPlayer().inspectItem(userCommand));
+            System.out.println("You take a " + userCommand + ", it is " + am.getPlayer().inspectItem(userCommand).toLowerCase() + ".");
         } else {
-            System.out.println("Cannot find " + userCommand);
+            System.out.println("Cannot find " + userCommand +".");
         }
     }
     public void eat(String userCommand){
         am.getPlayer().eatItem(userCommand);
         if (am.getPlayer().isItemExchange() && !am.getPlayer().isEdibleItem()) {
-            System.out.println("You cannot eat " + userCommand);
+            System.out.println("You cannot eat " + userCommand + ".");
         } else if (am.getPlayer().isItemExchange()) {
-            System.out.println("You eat a " + userCommand);
-            System.out.println("You now have " + am.getPlayer().getHealth());
+            System.out.println("You eat a " + userCommand + ".");
+            System.out.println("You now have " + am.getPlayer().getHealth()+" health.");
         } else {
-            System.out.println("Cannot find " + userCommand);
+            System.out.println("Cannot find " + userCommand+".");
         }
     }
     public void inspect(String userCommand){
         am.getPlayer().inspectItem(userCommand);
         if (am.getPlayer().isItemExchange()) {
-            System.out.println(am.getPlayer().inspectItem(userCommand));
+            System.out.println(am.getPlayer().inspectItem(userCommand)+ ".");
         } else {
-            System.out.println("Cannot find " + userCommand);
+            System.out.println("Cannot find " + userCommand +".");
         }
     }
     private void helpText() {
@@ -212,23 +212,24 @@ public class UserInterface {
                         "\nAround the map there will be items in the rooms."+
                         "\nYou can pick up items from rooms or drop items from your inventory by typing either 'take *itemname*' or 'drop *itemname'."+
                         "\nIf you lose health, you can regain health by eating food. You do so by typing 'eat *foodname'."+
+                        "\nHowever, you cannot have more than 100 health."+
                         "\nIf you would like to look at an items description, you can type 'inspect *itemname*' to see an items description."+
                         "\nYou can look around the room you are in by writing 'look'." +
                         "\nYou can exit the game by writing 'exit'.");
     }
     public void lookAround(){
-        System.out.println("You are in a " + am.getPlayer().lookAround());
+        System.out.println("You are in a " + am.getPlayer().lookAround().toLowerCase());
 
         if(am.getPlayer().getCurrentRoom().getMonsterList().size() == 0 ){
-            System.out.println("There are no monsters in the room");
+            System.out.println("There are no monsters in the room.");
         } else {
             for (Monster monster : am.getPlayer().getCurrentRoom().getMonsterList()){
-                System.out.println("There is a " + monster.getType() + " in the room");
+                System.out.println("There is a " + monster.getType().toLowerCase() + " in the room.");
             }
         }
 
         if(am.getPlayer().getCurrentRoom().getItemList().size() == 0){
-            System.out.println("You find no items in " + am.getPlayer().getCurrentRoom().getDescriptionShort());
+            System.out.println("You find no items in " + am.getPlayer().getCurrentRoom().getDescriptionShort()+".");
         } else {
             for (Item items : am.getPlayer().getCurrentRoom().getItemList()) {
                 System.out.println(items.getItemName());

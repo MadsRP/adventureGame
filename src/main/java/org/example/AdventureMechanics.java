@@ -4,7 +4,6 @@ public class AdventureMechanics {
 
 
     private Map map = new Map();
-    private org.example.itemList itemList = new itemList();
     private Player player = new Player(map.getFirstRoom());
 
     public void playerMovement(String direction){

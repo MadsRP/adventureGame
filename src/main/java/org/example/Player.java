@@ -6,29 +6,17 @@ import java.util.ArrayList;
 public class Player {
 
 
-    private Room currentRoom;
-    private ArrayList<Item> inventory = new ArrayList<>();
-    private boolean wrongDirection;
-    private itemList inventoryItems = new itemList();
     private int health = 100;
-    private int damage;
-    private boolean itemExchange = true;
-    private Weapon currentWeapon;
-    private boolean edibleItem = true;
-    private RangedWeapon ranged;
     private int currentAmmo;
+    private boolean itemExchange = true;
+    private boolean wrongDirection;
+    private boolean edibleItem = true;
     private boolean rangedWeaponFire = false;
-    private Item eatItem;
-    private Food food;
-    private int healing;
     private boolean meleeWeapon;
-
-    public String getDirection() {
-        return direction;
-    }
-
-    private String direction;
-
+    private Room currentRoom;
+    private Weapon currentWeapon;
+    private ItemList inventoryItems = new ItemList();
+    private ArrayList<Item> inventory = new ArrayList<>();
 
 
     public Player(Room currentRoom, ArrayList inventory) {
@@ -161,10 +149,14 @@ public class Player {
                 }
             }
         }
+
         currentRoom.getItemList().remove(food);
         setHealth(health + healing);
         if (eatItem == null) {
             itemExchange = false;
+        }
+        if (health>100){
+            health = 100;
         }
     }
 
@@ -217,7 +209,6 @@ public class Player {
 
     public void useWeapon() {
         if (currentWeapon != null) {
-            damage = currentWeapon.getDamage();
             switch (currentWeapon.getWeaponType()) {
                 case RANGED_WEAPON:
                     if (currentWeapon.getAmmo() > 0) {

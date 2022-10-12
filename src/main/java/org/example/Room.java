@@ -5,14 +5,12 @@ import java.util.ArrayList;
 public class Room {
 
     private int roomNumber;
-    private Room currentRoom;
     private Room northConnectingRoom;
     private Room southConnectingRoom;
     private Room eastConnectingRoom;
     private Room westConnectingRoom;
     private String description;
     private String descriptionShort;
-    private Item item;
     private ArrayList<Item> itemList = new ArrayList<>();
     public ArrayList<Monster> getMonsterList() {
         return monsterList;
@@ -39,10 +37,6 @@ public class Room {
         this.southConnectingRoom = southConnectingRoom;
         this.eastConnectingRoom = eastConnectingRoom;
         this.westConnectingRoom = westConnectingRoom;
-    }
-
-    public Room(Item item) {
-        this.item = item;
     }
 
     public Room(int roomNumber, String description, String descriptionShort) {

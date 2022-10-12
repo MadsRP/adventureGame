@@ -21,15 +21,7 @@ public class Map {
     private ArrayList<Monster> monsterListRoom7 = new ArrayList<>();
     private ArrayList<Monster> monsterListRoom8 = new ArrayList<>();
     private ArrayList<Monster> monsterListRoom9 = new ArrayList<>();
-    private org.example.itemList itemList = new itemList();
-    private Monster monster = new Monster();
-
-    public ArrayList<Monster> getMonsterList() {
-        return monsterList;
-    }
-
-    private ArrayList<Monster> monsterList = new ArrayList<>();
-    private Room currentRoom = new Room();
+    private ItemList itemList = new ItemList();
     private Room room1 = new Room(1, "A Forest clearing with two gates south and east.", "the forest clearing.");
     private Room room2 = new Room(2, "A Small courtyard with a well.", "the well.");
     private Room room3 = new Room(3, "A courtyard with a moonlit sculpture.", "the courtyard with a sculpture.");
@@ -39,10 +31,10 @@ public class Map {
     private Room room7 = new Room(7, "A small field with a scarecrow.", "the field.");
     private Room room8 = new Room(8, "A courtyard with set of stairs leading to house.", "the stairs.");
     private Room room9 = new Room(9, "A small shrine.", "the shrine.");
-    private Room firstRoom = room1;
     private Monster skeleton = new Monster("Skeleton", "a spooky, scary skeleton", 50);
     private Monster gargoyle = new Monster("Gargoyle", "a gargoyle with thick gray skin and pointy horns", 90);
     private Monster zombie = new Monster("Zombie", "an undead human being", 30);
+    private Room firstRoom = room1;
 
 
     public Map(){

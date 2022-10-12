@@ -13,11 +13,6 @@ public abstract class Weapon extends Item{
     public int getDamage() {
         return damage;
     }
-
-    public void setDamage(int damage) {
-        this.damage = damage;
-    }
-
     public WeaponType getWeaponType(){
         return weaponType;
     }

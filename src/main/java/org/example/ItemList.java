@@ -1,15 +1,6 @@
 package org.example;
 
-import java.util.ArrayList;
-import java.util.Random;
-
-public class itemList {
-
-    private ArrayList <Item> numberOfRemovedItems = new ArrayList<>();
-    private ArrayList <Item> listOfItems = new ArrayList<>();
-    private ArrayList <Monster> listOfMonsters = new ArrayList<>();
-    private Food food = new Food();
-    private Item item = new Item();
+public class ItemList {
     private Item leatherScrap = new Item("Leather", "A piece of leather", Edible.NON_EDIBLE);
     private Item paper = new Item("Paper", "A piece of paper", Edible.NON_EDIBLE);
     private Item candle = new Item("Candle", "A slightly used candle", Edible.NON_EDIBLE);
@@ -22,7 +13,7 @@ public class itemList {
     private RangedWeapon bow = new RangedWeapon("Bow", "A small bow, that deals 10 damage", Edible.NON_EDIBLE, 10, WeaponType.RANGED_WEAPON, 5);
     private RangedWeapon crossbow = new RangedWeapon("Crossbow", "A crossbow, that deals 15 damage", Edible.NON_EDIBLE, 15, WeaponType.RANGED_WEAPON, 5);
 
-    public itemList(){
+    public ItemList(){
     }
     public Item getLeatherScrap() {
         return leatherScrap;
